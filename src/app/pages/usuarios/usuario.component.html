@@ -1,0 +1,677 @@
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row g-5 d-flex justify-content-center" *ngIf="!cargando">
+    <div class="col-12">
+        <!--begin::Card-->
+        <div class="card shadow-sm card-flush">
+            <!--begin::Card body-->
+            <div class="card-body pb-0">
+                <!--begin::Heading-->
+                <div class="card-px pt-1 pb-5 ">
+                    <form
+                        [formGroup]="forma"
+                        (ngSubmit)="guardarUsuario()"
+                        class="form fv-plugins-bootstrap5 fv-plugins-framework px-lg-20"
+                        action method="POST">
+
+                        <!--begin::Heading-->
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3" *ngIf="!f['id'].value">Crear
+                                Usuario</h1>
+                            <h1 class="mb-3" *ngIf="f['id'].value">Editar
+                                Usuario</h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Heading-->
+
+                        <ul
+                            class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab"
+                                    href="#kt_tab_datosbasicos">Datos
+                                    basicos</a>
+                            </li>
+                            <li class="nav-item"
+                                *ngIf="f['role_id'].value == 3">
+                                <a class="nav-link" data-bs-toggle="tab"
+                                    href="#kt_tab_datosestudiante">Datos del
+                                    estudiante</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+
+                            <!-- Datos basicos -->
+                            <div class="tab-pane fade show active"
+                                id="kt_tab_datosbasicos" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span class="required">Tipo
+                                                    Id</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                formControlName="tipo_doc_id"
+                                                class="form-select"
+                                                data-control="select2"
+                                                data-placeholder="Seleccione"
+                                                name="tipo_doc_id"
+                                                data-hide-search="true"
+                                                required
+                                                [ngClass]="{'is-invalid': f['tipo_doc_id'].invalid && f['tipo_doc_id'].touched }"
+                                                [class.is-valid]="f['tipo_doc_id'].valid">
+                                                <option
+                                                    value>Seleccione</option>
+                                                <option
+                                                    *ngFor="let tipodoc of tipodocumentos"
+                                                    [value]="tipodoc.id">{{
+                                                    tipodoc.nombre }}</option>
+                                            </select>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                              validation: 'required',
+                                              message: 'EL tipo de identificacion es requerido',
+                                              control: forma.controls['tipo_doc_id']
+                                            }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Identificación</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <input
+                                                formControlName="identificacion"
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="Identificación"
+                                                name="identificacion"
+                                                [ngClass]="{'is-invalid': f['identificacion'].invalid && f['identificacion'].touched }"
+                                                [class.is-valid]="f['identificacion'].valid"
+                                                autocomplete="off"
+                                                value
+                                                required>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'La identificacion es requerida',
+                                                    control: f['identificacion']
+                                            }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'pattern',
+                                                    message: 'Digite solo números',
+                                                    control: f['identificacion']
+                                            }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'maxLength',
+                                                    message: 'La identificacion debe tener maximo 20 caracteres',
+                                                    control: f['identificacion']
+                                            }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'minlength',
+                                                    message: 'La identificacion debe tener minimo 5 caracteres',
+                                                    control: f['identificacion']
+                                            }"></ng-container>
+
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <div class="col-md-5">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span class="required">Nombre
+                                                </span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <input
+                                                formControlName="name"
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="Nombre" name="name"
+                                                [ngClass]="{'is-invalid': f['name'].invalid && f['name'].touched }"
+                                                [class.is-valid]="f['name'].valid"
+                                                autocomplete="off"
+                                                value
+                                                required>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'El nombre es requerido',
+                                                    control: f['name']
+                                            }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'maxLength',
+                                                    message: 'El nombre debe tener maximo 50 caracteres',
+                                                    control: f['name']
+                                            }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'minlength',
+                                                    message: 'El nombre debe tener minimo 2 caracteres',
+                                                    control: f['name']
+                                            }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Genero</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                class="form-select "
+                                                data-placeholder="Seleccione"
+                                                data-control="select2"
+                                                data-hide-search="true"
+                                                name="genero"
+                                                [ngClass]="{'is-invalid': f['genero'].invalid && f['genero'].touched }"
+                                                [class.is-valid]="f['genero'].valid"
+                                                required
+                                                formControlName="genero">
+                                                <option value>Genero</option>
+                                                <option
+                                                    value="1">Masculino</option>
+                                                <option
+                                                    value="2">Femenino</option>
+                                                <option
+                                                    value="3">LGTBIQ+</option>
+                                                <option value="4">Otro</option>
+                                                <option value="5">Sin
+                                                    Definir</option>
+                                            </select>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                validation: 'required',
+                                                message: 'El genero es requerido',
+                                                control: f['genero']
+                                            }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Rol</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                class="form-select "
+                                                data-placeholder="Seleccione"
+                                                data-control="select2"
+                                                name="role_id"
+                                                [ngClass]="{'is-invalid': f['role_id'].invalid && f['role_id'].touched }"
+                                                [class.is-valid]="f['role_id'].valid"
+                                                required
+                                                formControlName="role_id">
+                                                <option value>Rol</option>
+                                                <option
+                                                    *ngFor="let rol of roles"
+                                                    [value]="rol.id">{{
+                                                    rol.nombre }}</option>
+                                            </select>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                validation: 'required',
+                                                message: 'El rol es requerido',
+                                                control: f['role_id']
+                                            }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span class="required">Fecha de
+                                                    nacimiento</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <input type="text"
+                                                class="form-control"
+                                                placeholder="Fecha de nacimiento"
+                                                name="fecha_nacimiento"
+                                                [ngClass]="{'is-invalid': f['fecha_nacimiento'].invalid && f['fecha_nacimiento'].touched }"
+                                                [class.is-valid]="f['fecha_nacimiento'].valid"
+                                                formControlName="fecha_nacimiento"
+                                                mwlFlatpickr
+                                                [convertModelValue]="true"
+                                                altFormat="Y-m-d"
+                                                >
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'La fecha de nacimiento es requerida',
+                                                    control: f['fecha_nacimiento']
+                                                }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span class="required">Correo
+                                                </span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <input type="email"
+                                                class="form-control "
+                                                placeholder="Correo"
+                                                name="email"
+                                                [ngClass]="{'is-invalid': f['email'].invalid && f['email'].touched }"
+                                                [class.is-valid]="f['email'].valid"
+                                                value
+                                                required
+                                                autocomplete="off"
+                                                formControlName="email">
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                        validation: 'required',
+                                                        message: 'El correo es requerido',
+                                                        control: f['email']
+                                                }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                        validation: 'email',
+                                                        message: 'Digite un correo valido',
+                                                        control: f['email']
+                                                }"></ng-container>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                        validation: 'maxLength',
+                                                        message: 'El correo debe tener maximo 100 caracteres',
+                                                        control: f['email']
+                                                }"></ng-container>
+
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class>Telefono</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <input type="text"
+                                                class="form-control"
+                                                placeholder="Telefono"
+                                                name="telefono"
+                                                [class]="f['telefono'].valid && f['telefono'].touched && f['telefono'].value != ''  ? 'is-valid': ''"
+                                                value
+                                                formControlName="telefono">
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'pattern',
+                                                    message: 'Digite solo números',
+                                                    control: f['telefono']
+                                            }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Departamento</span>
+                                            </label>
+                                            <!--end::Label-->   
+                                                                                     
+                                            <select
+                                                class="form-select"
+                                                data-placeholder="Seleccione"
+                                                data-control="select2"
+                                                data-hide-search="false"
+                                                name="departamento_id"
+                                                [ngClass]="{'is-invalid': f['departamento_id'].invalid && f['departamento_id'].touched }"
+                                                [class.is-valid]="f['departamento_id'].valid"
+                                                required
+                                                formControlName="departamento_id">
+                                                <option
+                                                    value>Departamento</option>
+                                                <option
+                                                    *ngFor="let departamento of departamentos"
+                                                    [value]="departamento.id">{{
+                                                    departamento.nombre
+                                                    }}</option>
+                                            </select>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'El departamento es requerido',
+                                                    control: f['departamento_id']
+                                            }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Municipio</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                class="form-select"
+                                                data-control="select2"
+                                                data-placeholder="Seleccione"
+                                                name="municipio_id"
+                                                [ngClass]="{'is-invalid': f['municipio_id'].invalid && f['municipio_id'].touched }"
+                                                [class.is-valid]="f['municipio_id'].valid"
+                                                formControlName="municipio_id"
+                                                (change)="cambioMuni($event)">
+                                                <option value>Municipio</option>
+                                                <option
+                                                    *ngFor="let municipio of $any(municipios[f['departamento_id'].value])"
+                                                    [value]="municipio.id">{{
+                                                    municipio.nombre
+                                                    }}
+                                                </option>
+                                            </select>
+
+                                            <ng-container
+                                                [ngTemplateOutlet]="formError"
+                                                [ngTemplateOutletContext]="{
+                                                validation: 'required',
+                                                message: 'El municipio es requerido',
+                                                control: f['municipio_id']
+                                        }"></ng-container>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span class>Dirección</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <textarea type="text" rows="3"
+                                                cols="20"
+                                                class="form-control "
+                                                placeholder="Dirección"
+                                                name="direccion"
+                                                id="direccion"
+                                                style="resize: horizontal"
+                                                formControlName="direccion"
+                                                [class]="f['direccion'].valid && f['direccion'].touched && f['direccion'].value != ''  ? 'is-valid': ''">
+                                                ></textarea>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  Datos basicos -->
+
+                            <!-- datos del estudiante -->
+                            <div class="tab-pane fade"
+                                id="kt_tab_datosestudiante" role="tabpanel">
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Jornada</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                class="form-select "
+                                                data-placeholder="Seleccione"
+                                                data-control="select2"
+                                                data-hide-search="false"
+                                                name="jornada"
+                                                [class]="f['jornada'].valid && f['jornada'].touched && f['jornada'].value != ''  ? 'is-valid': ''"
+                                                formControlName="jornada">
+                                                <option value>Jornada</option>
+                                                <option
+                                                    value="1">Diurna</option>
+                                                <option
+                                                    value="2">Nocturna</option>
+
+                                            </select>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Codigo</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <input type="text"
+                                                class="form-control "
+                                                placeholder="Codigo"
+                                                name="codigo"
+                                                value
+                                                formControlName="codigo"
+                                                [class]="f['codigo'].valid && f['codigo'].touched && f['codigo'].value != ''  ? 'is-valid': ''">
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Grado</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                class="form-select "
+                                                data-placeholder="Seleccione"
+                                                data-control="select2"
+                                                data-hide-search="false"
+                                                name="grado_id"
+                                                [class]="f['grado_id'].valid && f['grado_id'].touched && f['grado_id'].value != ''  ? 'is-valid': ''"
+                                                formControlName="grado_id">
+                                                <option value>Grado</option>
+                                                <option
+                                                    value="1">11</option>
+                                                <option
+                                                    value="2">10</option>
+
+                                            </select>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <!--begin::Input group-->
+                                        <div
+                                            class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                                <span
+                                                    class="required">Curso</span>
+                                            </label>
+                                            <!--end::Label-->
+                                            <select
+                                                class="form-select "
+                                                data-placeholder="Seleccione"
+                                                data-control="select2"
+                                                data-hide-search="false"
+                                                name="curso_id"
+                                                [class]="f['curso_id'].valid && f['curso_id'].touched && f['curso_id'].value != ''  ? 'is-valid': ''"
+                                                formControlName="curso_id">
+                                                <option value>Curso</option>
+                                                <option
+                                                    value="1">11 - 01</option>
+                                                <option
+                                                    value="2">10 - 01</option>
+
+                                            </select>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- datos del estudiante -->
+                        </div>
+
+                        <!--begin::Actions-->
+                        <div class="text-center">
+                            <a [routerLink]="['/usuarios']"
+                                class="btn btn-danger btn-sm me-2"><i
+                                    class="fas fa-arrow-left fs-4"></i>
+                                Volver</a>
+                            <button type="submit"
+                                class="btn btn-primary btn-sm"><i
+                                    class="fas fa-save fs-4 ms-2"></i>
+                                Guardar</button>
+                        </div>
+                        <!--end::Actions-->
+
+                    </form>
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+
+<ng-template
+    #formError
+    let-control="control"
+    let-message="message"
+    let-validation="validation">
+    <ng-container
+        *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+        <div class="fv-plugins-message-container">
+            <div class="fv-help-block">
+                {{ message }}
+            </div>
+        </div>
+    </ng-container>
+</ng-template>

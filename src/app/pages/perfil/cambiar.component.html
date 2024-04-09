@@ -1,0 +1,199 @@
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row g-5 d-flex justify-content-center" *ngIf="!cargando">
+    <div class="col-12">
+        <!--begin::Sign-in Method-->
+        <div class="card mb-5 mb-xl-10 shadow-sm card-flush">
+            <!--begin::Content-->
+            <div id="kt_account_signin_method" class="collapse show">
+                <!--begin::Card body-->
+                <div class="card-body border-top p-9">
+
+                    <!--begin::Edit-->
+                    <div id="kt_signin_password_edit"
+                        class="flex-row-fluid">
+                        <!--begin::Form-->
+                        <form method="POST" action
+                            [formGroup]="forma"
+                            (ngSubmit)="guardar()">
+                            <div class="row mb-1">
+                                <div class="col-lg-4">
+                                    <div class="fv-row mb-0">
+                                        <label for="currentpassword"
+                                            class="form-label fs-6 fw-bolder mb-3">Clave
+                                            actual</label>
+                                        <input
+                                            formControlName="passwordAct"
+                                            required
+                                            [ngClass]="{'is-invalid': f['passwordAct'].invalid && f['passwordAct'].touched }"
+                                            [class.is-valid]="f['passwordAct'].valid"
+                                            type="password"
+                                            class="form-control form-control-lg "
+                                            name="password" />
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'La clave actual es requerida',
+                                                    control: f['passwordAct']
+                                            }"></ng-container>
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'maxLength',
+                                                    message: 'La clave actual debe tener maximo 30 caracteres',
+                                                    control: f['passwordAct']
+                                            }"></ng-container>
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'minlength',
+                                                    message: 'La clave actual debe tener minimo 8 caracteres',
+                                                    control: f['passwordAct']
+                                            }"></ng-container>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="fv-row mb-0">
+                                        <label for="passwordNue"
+                                            class="form-label fs-6 fw-bolder mb-3">Nueva
+                                            Clave</label>
+                                        <input type="password"
+                                            class="form-control form-control-lg "
+                                            name="passwordNue"
+                                            formControlName="passwordNue"
+                                            required
+                                            [ngClass]="{'is-invalid': f['passwordNue'].invalid && f['passwordNue'].touched }"
+                                            [class.is-valid]="f['passwordNue'].valid" />
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'La nueva clave es requerida',
+                                                    control: f['passwordNue']
+                                            }"></ng-container>
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'maxLength',
+                                                    message: 'La nueva clave debe tener maximo 30 caracteres',
+                                                    control: f['passwordNue']
+                                            }"></ng-container>
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'minlength',
+                                                    message: 'La nuev clave debe tener minimo 8 caracteres',
+                                                    control: f['passwordNue']
+                                            }"></ng-container>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="fv-row mb-0">
+                                        <label for="confirmpassword"
+                                            class="form-label fs-6 fw-bolder mb-3">Confirmar
+                                            Nueva Clave</label>
+                                        <input type="password"
+                                            class="form-control form-control-lg "
+                                            name="passwordRep"
+                                            formControlName="passwordRep"
+                                            required
+                                            [ngClass]="{'is-invalid': f['passwordRep'].invalid && f['passwordRep'].touched }"
+                                            [class.is-valid]="f['passwordRep'].valid" />
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'required',
+                                                    message: 'Confirmar nueva clave es requerida',
+                                                    control: f['passwordRep']
+                                            }"></ng-container>
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'maxLength',
+                                                    message: 'Confirmar nueva clave debe tener maximo 30 caracteres',
+                                                    control: f['passwordRep']
+                                            }"></ng-container>
+
+                                        <ng-container
+                                            [ngTemplateOutlet]="formError"
+                                            [ngTemplateOutletContext]="{
+                                                    validation: 'minlength',
+                                                    message: 'Confirmar clave debe tener minimo 8 caracteres',
+                                                    control: f['passwordRep']
+                                            }"></ng-container>
+
+                                        <div
+                                            class="fv-plugins-message-container"
+                                            *ngIf="forma.errors?.['sonIguales'] && !forma.pristine"
+                                            >
+                                            <div class="fv-help-block">
+                                                Las contraseñas deben ser iguales
+                                            </div>
+                                        </div>
+
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-5"></div>
+
+                            <!--begin::Actions-->
+                            <div class="text-center">
+                                <a (click)="cancelar()"
+                                    class="btn btn-danger btn-sm me-2"><i
+                                        class="fas fa-ban fs-4"></i>
+                                    Cancelar</a>
+                                <button type="submit"
+                                    class="btn btn-primary btn-sm"><i
+                                        class="fas fa-save fs-4 ms-2"></i>
+                                    Guardar</button>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Edit-->
+
+                </div>
+                <!--end::Card body-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Sign-in Method-->
+    </div>
+</div>
+
+<ng-template
+    #formError
+    let-control="control"
+    let-message="message"
+    let-validation="validation">
+    <ng-container
+        *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+        <div class="fv-plugins-message-container">
+            <div class="fv-help-block">
+                {{ message }}
+            </div>
+        </div>
+    </ng-container>
+</ng-template>

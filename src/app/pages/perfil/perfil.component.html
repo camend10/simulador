@@ -1,0 +1,383 @@
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<!--begin::Navbar-->
+<div class="card mb-5 mb-xl-10" *ngIf="!cargando">
+    <div class="card-body pt-9 pb-0 shadow-sm card-flush">
+        <!--begin::Details-->
+        <div class="d-flex flex-wrap flex-sm-nowrap">
+            <!--begin: Pic-->
+            <div class="me-7 mb-4">
+                <div
+                    class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                    <img
+                        [src]="usuario.foto! | imagen:usuario.id.toString() :usuario.tipo "
+                        alt="image" />
+                    <div
+                        class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+                </div>
+            </div>
+            <!--end::Pic-->
+            <!--begin::Info-->
+            <div class="flex-grow-1">
+                <!--begin::Title-->
+                <div
+                    class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                    <!--begin::User-->
+                    <div class="d-flex flex-column">
+                        <!--begin::Name-->
+                        <div class="d-flex align-items-center mb-2">
+                            <a href="#"
+                                class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{
+                                usuario.name }}</a>
+                            <a href="#">
+                                <i
+                                    class="ki-duotone ki-verify fs-1 text-primary">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
+                            </a>
+                        </div>
+                        <!--end::Name-->
+                        <!--begin::Info-->
+                        <div
+                            class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                            <a
+                                class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                <i
+                                    class="ki-duotone ki-profile-circle fs-4 me-1">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>{{ usuario.tipo | tipoPerfil }}</a>
+                            <a
+                                class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                <i class="ki-duotone ki-geolocation fs-4 me-1">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>{{ usuario.municipio_id }} , {{
+                                usuario.departamento_id }}</a>
+                            <a
+                                class="d-flex align-items-center text-gray-500 text-hover-primary mb-2">
+                                <i class="ki-duotone ki-sms fs-4">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>{{ usuario.email }}</a>
+                        </div>
+                        <!--end::Info-->
+                    </div>
+                    <!--end::User-->
+                    <!--begin::Actions-->
+                    <div class="d-flex my-4">
+
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Stats-->
+                <div class="d-flex flex-wrap flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column flex-grow-1 pe-8">
+                        <!--begin::Stats-->
+                        <div class="d-flex flex-wrap">
+                            <!--begin::Stat-->
+                            <div
+                                class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                <!--begin::Number-->
+                                <div class="d-flex align-items-center">
+                                    <i
+                                        class="ki-duotone ki-arrow-up fs-3 text-success me-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                    <div class="fs-2 fw-bold">{{
+                                        edad }}</div>
+                                </div>
+                                <!--end::Number-->
+                                <!--begin::Label-->
+                                <div
+                                    class="fw-semibold fs-6 text-gray-500">Edad</div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Stat-->
+                            <!--begin::Stat-->
+                            <div
+                                class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                <!--begin::Number-->
+                                <div class="d-flex align-items-center">
+                                    <i
+                                        class="ki-duotone ki-arrow-up fs-3 text-success me-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                    <div class="fs-2 fw-bold">{{
+                                        usuario.genero }}</div>
+                                </div>
+                                <!--end::Number-->
+                                <!--begin::Label-->
+                                <div
+                                    class="fw-semibold fs-6 text-gray-500">Genero</div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Stat-->
+                            <!--begin::Stat-->
+                            <div
+                                class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                <!--begin::Number-->
+                                <div class="d-flex align-items-center">
+                                    <i
+                                        class="ki-duotone ki-arrow-up fs-3 text-success me-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                    <div class="fs-2 fw-bold">{{
+                                        usuario.estado | estado }}</div>
+                                </div>
+                                <!--end::Number-->
+                                <!--begin::Label-->
+                                <div
+                                    class="fw-semibold fs-6 text-gray-500">Estado</div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Stat-->
+                        </div>
+                        <!--end::Stats-->
+                    </div>
+                    <!--end::Wrapper-->
+
+                </div>
+                <!--end::Stats-->
+            </div>
+            <!--end::Info-->
+        </div>
+        <!--end::Details-->
+
+        <!--begin::Basic info-->
+        <div class="card mb-5 mb-xl-10">
+            <!--begin::Card header-->
+            <div class="card-header border-0 cursor-pointer" role="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#kt_account_profile_details"
+                aria-expanded="true" aria-controls="kt_account_profile_details">
+                <!--begin::Card title-->
+                <div class="card-title m-0">
+                    <h3 class="fw-bold m-0">Detalle del perfil</h3>
+                </div>
+                <!--end::Card title-->
+            </div>
+            <!--begin::Card header-->
+            <!--begin::Content-->
+            <div id="kt_account_settings_profile_details" class="collapse show">
+                <!--begin::Form-->
+                <form
+                    #f="ngForm"
+                    (ngSubmit)="guardar(f.value)"
+                    id="kt_account_profile_details_form" class="form">
+                    <!--begin::Card body-->
+                    <div class="card-body border-top p-9">
+
+                        <div class="row mb-6 justify-content-center">
+
+                            <img *ngIf="!imagenTemp"
+                                [src]="usuario.foto! | imagen:usuario.id.toString() :usuario.tipo "
+                                class="w150" alt>
+                            <img *ngIf="imagenTemp" [src]="imagenTemp"
+                                class="w150" alt>
+
+                        </div>
+
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label fw-semibold fs-6">Foto</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-6">
+
+                                <input type="file" name="archivo"
+                                    class="form-control"
+                                    accept=".png, .jpg, .jpeg"
+                                    (change)="seleccionImagen($event)" />
+
+                                <!--begin::Image input-->
+
+                                <!--end::Image input-->
+                                <!--begin::Hint-->
+                                <div class="form-text">Tipos aceptados: png,
+                                    jpg, jpeg.</div>
+                                <!--end::Hint-->
+                            </div>
+                            <!--end::Col-->
+
+                            <div class="col-lg-2">
+
+                                <button type="button"
+                                    class="btn btn-success"
+                                    (click)="cambiarImagen()"
+                                    [disabled]="!imagenTemp"
+                                    id="kt_account_profile_details_submit">
+                                    <i class="ki-duotone ki-folder-up fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                    Subir</button>
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label required fw-semibold fs-6">Identificación</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-4 fv-row">
+                                <input type="text" name="identificacion"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Identificación"
+                                    [ngModel]="usuario.identificacion"
+                                    required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label required fw-semibold fs-6">Nombre</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-4 fv-row">
+                                <input type="text" name="name"
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                    placeholder="Nombre"
+                                    [ngModel]="usuario.name" required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label required fw-semibold fs-6">Username</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-4 fv-row">
+                                <input type="text" name="username"
+                                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                                    placeholder="Username"
+                                    [ngModel]="usuario.username" required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-4 fv-row">
+                                <input type="email" name="email"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Email"
+                                    [ngModel]="usuario.email" required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label fw-semibold fs-6">
+                                <span class="required">Fecha de
+                                    nacimiento</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-4 fv-row">
+                                <input type="date" name="fecha_nacimiento"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Fecha de nacimiento"
+                                    [ngModel]="usuario.fecha_nacimiento"
+                                    required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label fw-semibold fs-6">
+                                <span class="required">Telefono</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-4 fv-row">
+                                <input type="tel" name="telefono"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Telefono"
+                                    [ngModel]="usuario.telefono" required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label
+                                class="col-lg-4 col-form-label fw-semibold fs-6">Dirección</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="direccion"
+                                    class="form-control form-control-lg form-control-solid"
+                                    placeholder="Dirección"
+                                    [ngModel]="usuario.direccion" required />
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Actions-->
+                        <div
+                            class="card-footer d-flex justify-content-end py-6 px-9 row mb-6">
+                            <div class="col-lg-8 fv-row">
+                                <button type="submit"
+                                    class="btn btn-primary"
+                                    id="kt_account_profile_details_submit">
+                                    <i class="fas fa-save"></i>
+                                    Guardar</button>
+                            </div>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Card body-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Basic info-->
+    </div>
+</div>
+<!--end::Navbar-->

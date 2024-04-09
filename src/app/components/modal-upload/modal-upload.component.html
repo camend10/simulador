@@ -1,0 +1,67 @@
+<div class="fondo-negro" [ngClass]="_modalUploadService.oculto">
+    <!--begin::Modal-->
+    <div class="modal" style="display: block;" id="kt_modal_upgrade_plan"
+        tabindex="-1"
+        aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header justify-content-end border-0 pb-0">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary"
+                        (click)="cerrarModal()">
+                        <i class="ki-duotone ki-cross fs-1">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
+
+                    <div class="row mb-6 justify-content-center">
+
+                        <img *ngIf="!imagenTemp" [src]="'xxxxx' | imagen:'':'' "
+                            class="w150 img-fluid rounded" alt>
+                        <img *ngIf="imagenTemp" [src]="imagenTemp"
+                            class="w150 img-fluid rounded"
+                            alt>
+
+                    </div>
+
+                    <input type="file" name="archivo"
+                        class="form-control"
+                        accept=".png, .jpg, .jpeg"
+                        (change)="seleccionImagen($event)" />
+
+                    <!--begin::Actions-->
+                    <div class="d-flex flex-center flex-row-fluid pt-12">
+                        <button type="reset" class="btn btn-danger me-3"
+                            (click)="cerrarModal()">
+                            <i class="fa-solid fa-xmark"></i>
+                            Cancelar</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!imagenTemp"
+                            (click)="subirImagen()"
+                            id="kt_modal_upgrade_plan_btn">
+                            <!--begin::Indicator label-->
+                            <span class="indicator-label">
+                                <i class="fa-solid fa-upload"></i>
+                                Subir imagen</span>
+                            <!--end::Indicator label-->
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal-->
+</div>

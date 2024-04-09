@@ -1,0 +1,62 @@
+ <!--begin::App-->
+ <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <!--begin::Page-->
+    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+        <app-header></app-header>
+        <!--begin::Wrapper-->
+        <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+            <app-sidebar></app-sidebar>
+
+            <!--begin::Main-->
+            <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                <!--begin::Content wrapper-->
+                <div class="d-flex flex-column flex-column-fluid">
+
+                    <!--begin::Content-->
+                    <div id="kt_app_content"
+                        class="app-content flex-column-fluid">
+                        <!--begin::Content container-->
+                        <div id="kt_app_content_container"
+                            class="app-container container-xxl">
+
+                            <!-- aqui va el contenido -->
+
+
+                            <!-- <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                            
+                                            <h4 class="card-title">
+                                                Barra de progreso
+                                            </h4>
+                                            
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <router-outlet></router-outlet>
+
+                        </div>
+                        <!--end::Content container-->
+                    </div>
+                    <!--end::Content-->
+
+                </div>
+                <!--end::Content wrapper-->
+                <!-- <app-footer></app-footer> -->
+            </div>
+            <!--end:::Main-->
+
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::App-->
+
+<!-- Modal Upload -->
+<app-modal-upload></app-modal-upload>
+<!-- Modal Upload -->

@@ -1,0 +1,107 @@
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header border-0 pt-5">
+
+                <!--begin::Heading-->
+                <div class="mb-1 text-center">
+                    <!--begin::Title-->
+                    <h1 class="mb-1">Simulacro {{ simulacro_id }}</h1>
+                    <h3 class="mb-1">Sesión {{ sesion_id }}</h3>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+
+                <div class="card-toolbar">
+                    <!--begin::Toolbar-->
+                    <div class="d-flex justify-content-end"
+                        data-kt-user-table-toolbar="base">
+                        <!--begin::Add user-->
+                        <a [routerLink]="['/sesiones',simulacro_id]"
+                            class="btn btn-danger">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                            <i class="ki-duotone ki-arrow-left">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <!--end::Svg Icon-->
+                            Volver
+                        </a>
+                        <!--end::Add user-->
+                    </div>
+                    <!--end::Toolbar-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body pb-2">
+                <div class="card-px pt-1 pb-5 ">
+                    <div
+                        class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-10 p-6">
+                        <!--begin::Icon-->
+                        <i
+                            class="ki-duotone ki-information fs-2tx text-warning me-4">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                            <span class="path3"></span>
+                        </i>
+                        <!--end::Icon-->
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-stack flex-grow-1">
+                            <!--begin::Content-->
+                            <div class="fw-semibold">
+                                <h4 class="text-gray-900 fw-bold">::
+                                    Instrucciones generales ::</h4>
+                                <div class="fs-6 text-gray-700">1. Se le permite
+                                    iniciar la prueba cuando lo desee.</div>
+                                <div class="fs-6 text-gray-700">2. El tiempo
+                                    Inicia una vez inicies la prueba, recuerda
+                                    que debes terminarla.</div>
+                                <div class="fs-6 text-gray-700">3. No puedes
+                                    cerrar sesion, una vez inicies la
+                                    prueba debe terminarse.</div>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3 justify-content-center">
+    <div class="col-md-2 col-sm-6 me-5" *ngFor="let materia of materias">
+        <div class="card shadow-sm card-xl-stretch mb-xl-8">
+            <a [routerLink]="['/preguntas',simulacro_id,sesion_id,materia.id]">
+
+                <img
+                    [src]="materia.imagen | imagen:materia.id.toString() :'materias' "
+                    class="img-fluid" [alt]="materia.test_name">
+                <div
+                    class="card-footer d-flex align-items-center justify-content-between"
+                    [ngStyle]="{'background-color': coloresTarjetas[materia.id.toString()], 'border-radius': '0 0 .625rem .625rem','padding': '10px'}">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

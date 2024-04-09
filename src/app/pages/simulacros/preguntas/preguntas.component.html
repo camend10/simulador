@@ -1,0 +1,432 @@
+
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="getCurrentPregunta() !== null">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+
+                <div class="d-flex justify-content-between py-3 px-5">
+                    <div class="score d-flex align-items-center">
+                        <span class="text-gray-900 fs-3 fw-bold">
+                            <span class="text-info">
+                                Pregunta {{
+                                preguntaActual + 1 }} de {{
+                                preguntas.length }}
+                            </span>
+                        </span>
+                    </div>
+                    <div class="pregunta ">
+                        <span class="text-gray-900 fs-3 fw-bold">
+                            <h1 class="mb-1 text-info">Simulacro {{ simulacro_id
+                                }}</h1>
+                            <h3
+                                class="mb-1 text-info d-flex justify-content-center">Sesión
+                                {{ sesion_id }}</h3>
+                        </span>
+                    </div>
+
+                    <div class="timer ">
+
+                        <h2
+                            class="text-gray-900 fs-3 fw-bold d-flex justify-content-center">
+                            <span class="text-info">
+                                Tiempo
+                            </span>
+                        </h2>
+                        <p class="text-gray-900 fs-3 fw-bold">
+                            <span class="text-info">
+                                {{ horas | number: '2.0-0'}} : {{ minutos |
+                                number:
+                                '2.0-0'}} : {{ segundos | number: '2.0-0'}}
+                            </span>
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="progress" role="progressbar"
+                    aria-label="Animated striped example"
+                    [attr.ariaValuenow]="progreso1" aria-valuenow="50"
+                    aria-valuemin="0" aria-valuemax="100">
+                    <div
+                        class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                        [style.width]="progreso1 + '%'">
+                        <span class="text-gray-900 fs-7 fw-bold">
+                            {{ progreso1 }} %
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="row mt-2">
+            <div class="col-12">
+                <!--begin::Feeds Widget 1-->
+                <div class="card mb-1 mb-xl-1 shadow-sm">
+                    <!--begin::Body-->
+                    <div class="card-body pb-0">
+                        <!--begin::Header-->
+                        <div class="d-flex align-items-center mb-1">
+                            <!--begin::User-->
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <!--begin::Info-->
+                                <div class="d-flex flex-column"
+                                    style="text-align: justify">
+                                    <p
+                                        class="text-gray-900 text-hover-primary fs-5 fw-bold">
+                                        {{
+                                        preguntaActual + 1 }}.
+                                        {{preguntas[preguntaActual].que_desc}}</p>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                            <!--end::User-->
+                        </div>
+                        <div class="d-flex justify-content-center mb-3">
+                            <img
+                                *ngIf="preguntas[preguntaActual].img_preg"
+                                [src]="preguntas[preguntaActual].img_preg| pregunta:preguntas[preguntaActual].id.toString() :materia_id "
+                                class="img-fluid mb-2"
+                                width='300'
+                                heigth='300'>
+                        </div>
+
+                        <div class="d-flex align-items-center mt-2 mb-1"
+                            *ngIf="preguntas[preguntaActual].que_desc2">
+                            <!--begin::User-->
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <!--begin::Info-->
+                                <div class="d-flex flex-column"
+                                    style="text-align: justify">
+                                    <p
+                                        class="text-gray-900 text-hover-primary fs-5 fw-bold">{{
+                                        preguntas[preguntaActual].que_desc2
+                                        }}</p>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                            <!--end::User-->
+                        </div>
+
+                        <div class="d-flex align-items-center mb-1"
+                            *ngIf="preguntas[preguntaActual].que_desc3">
+                            <!--begin::User-->
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <!--begin::Info-->
+                                <div class="d-flex flex-column"
+                                    style="text-align: justify">
+                                    <p
+                                        class="text-gray-900 text-hover-primary fs-5 fw-bold">{{
+                                        preguntas[preguntaActual].que_desc3
+                                        }}</p>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                            <!--end::User-->
+                        </div>
+                        <!--end::Header-->
+                        <div class="separator"></div>
+
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Feeds Widget 1-->
+
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12">
+                <!--begin::Tabs-->
+                <div class="nav flex-column">
+
+                    <div class="card mb-1 mb-xl-8 shadow-sm">
+                        <div class="card-body pb-0">
+                            <!--begin::Tab link-->
+                            <label
+                                class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                data-bs-toggle="tab"                                
+                                [ngClass]="{ 'active': isActive('respuesta_ans1_' + preguntaActual) }">
+                                <!--end::Description-->
+                                <div class="d-flex align-items-center me-2">
+                                    <!--begin::Radio-->
+                                    <div
+                                        class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                        <input class="form-check-input"
+                                            type="radio"
+                                            [name]="'respuesta_' + preguntaActual"
+                                            [value]="'respuesta_ans1_' + preguntaActual"
+                                            [(ngModel)]="respuestaSeleccionada[preguntaActual]"
+                                            (click)="toggleActive('respuesta_ans1_' + preguntaActual, preguntaActual,'ans1')"
+                                            [checked]="respuestaSeleccionada[preguntaActual] === 'respuesta_ans1_' + preguntaActual" />
+                                    </div>
+                                    <!--end::Radio-->
+                                    <!--begin::Info-->
+                                    <div class="flex-grow-1">
+                                        <div
+                                            class="d-flex align-items-center fs-6 flex-wrap">
+                                            {{
+                                            preguntas[preguntaActual].ans1
+                                            }}</div>
+
+                                    </div>
+                                    <!--end::Info-->
+
+                                    <div
+                                        class="d-flex justify-content-center mb-3"
+                                        *ngIf="preguntas[preguntaActual].ban_imgr1 == 1">
+                                        <img
+                                            *ngIf="preguntas[preguntaActual].imgr1"
+                                            [src]="preguntas[preguntaActual].imgr1| pregunta:preguntas[preguntaActual].id.toString() :materia_id "
+                                            class="img-fluid mb-2"
+                                            width='150'
+                                            heigth='150'>
+                                    </div>
+                                </div>
+                                <!--end::Description-->
+
+                            </label>
+                            <!--end::Tab link-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--end::Tabs-->
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12">
+                <!--begin::Tabs-->
+                <div class="nav flex-column">
+
+                    <div class="card mb-1 mb-xl-8 shadow-sm">
+                        <div class="card-body pb-0">
+                            <!--begin::Tab link-->
+                            <label
+                                class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                data-bs-toggle="tab"                                
+                                [ngClass]="{ 'active': isActive('respuesta_ans2_' + preguntaActual) }">
+                                <!--end::Description-->
+                                <div class="d-flex align-items-center me-2">
+                                    <!--begin::Radio-->
+                                    <div
+                                        class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                        <input class="form-check-input"
+                                            type="radio"
+                                            [name]="'respuesta_' + preguntaActual"
+                                            [value]="'respuesta_ans2_' + preguntaActual"
+                                            [(ngModel)]="respuestaSeleccionada[preguntaActual]"
+                                            (click)="toggleActive('respuesta_ans2_' + preguntaActual, preguntaActual,'ans2')"
+                                            [checked]="respuestaSeleccionada[preguntaActual] === 'respuesta_ans2_' + preguntaActual" />
+                                    </div>
+                                    <!--end::Radio-->
+                                    <!--begin::Info-->
+                                    <div class="flex-grow-1">
+                                        <div
+                                            class="d-flex align-items-center fs-6 flex-wrap">{{
+                                            preguntas[preguntaActual].ans2
+                                            }}</div>
+
+                                    </div>
+                                    <!--end::Info-->
+
+                                    <div
+                                        class="d-flex justify-content-center mb-3"
+                                        *ngIf="preguntas[preguntaActual].ban_imgr2 == 1">
+                                        <img
+                                            *ngIf="preguntas[preguntaActual].imgr2"
+                                            [src]="preguntas[preguntaActual].imgr2| pregunta:preguntas[preguntaActual].id.toString() :materia_id "
+                                            class="img-fluid mb-2"
+                                            width='150'
+                                            heigth='150'>
+                                    </div>
+                                </div>
+                                <!--end::Description-->
+
+                            </label>
+                            <!--end::Tab link-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--end::Tabs-->
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12">
+                <!--begin::Tabs-->
+                <div class="nav flex-column">
+
+                    <div class="card mb-1 mb-xl-8 shadow-sm">
+                        <div class="card-body pb-0">
+                            <!--begin::Tab link-->
+                            <label
+                                class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                data-bs-toggle="tab"                                
+                                [ngClass]="{ 'active': isActive('respuesta_ans3_' + preguntaActual) }">
+                                <!--end::Description-->
+                                <div class="d-flex align-items-center me-2">
+                                    <!--begin::Radio-->
+                                    <div
+                                        class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                        <input class="form-check-input"
+                                            type="radio"
+                                            [name]="'respuesta_' + preguntaActual"
+                                            [value]="'respuesta_ans3_' + preguntaActual"
+                                            [(ngModel)]="respuestaSeleccionada[preguntaActual]"
+                                            (click)="toggleActive('respuesta_ans3_' + preguntaActual, preguntaActual,'ans3')"
+                                            [checked]="respuestaSeleccionada[preguntaActual] === 'respuesta_ans3_' + preguntaActual" />
+                                    </div>
+                                    <!--end::Radio-->
+                                    <!--begin::Info-->
+                                    <div class="flex-grow-1">
+                                        <div
+                                            class="d-flex align-items-center fs-6 flex-wrap">{{
+                                            preguntas[preguntaActual].ans3
+                                            }}</div>
+
+                                    </div>
+                                    <!--end::Info-->
+
+                                    <div
+                                        class="d-flex justify-content-center mb-3"
+                                        *ngIf="preguntas[preguntaActual].ban_imgr3 == 1">
+                                        <img
+                                            *ngIf="preguntas[preguntaActual].imgr3"
+                                            [src]="preguntas[preguntaActual].imgr3| pregunta:preguntas[preguntaActual].id.toString() :materia_id "
+                                            class="img-fluid mb-2"
+                                            width='150'
+                                            heigth='150'>
+                                    </div>
+                                </div>
+                                <!--end::Description-->
+
+                            </label>
+                            <!--end::Tab link-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--end::Tabs-->
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12">
+                <!--begin::Tabs-->
+                <div class="nav flex-column">
+
+                    <div class="card mb-1 mb-xl-8 shadow-sm">
+                        <div class="card-body pb-0">
+                            <!--begin::Tab link-->
+                            <label
+                                class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                data-bs-toggle="tab"                                
+                                [ngClass]="{ 'active': isActive('respuesta_ans4_' + preguntaActual) }">
+                                <!--end::Description-->
+                                <div class="d-flex align-items-center me-2">
+                                    <!--begin::Radio-->
+                                    <div
+                                        class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                        <input class="form-check-input"
+                                            type="radio"
+                                            [name]="'respuesta_' + preguntaActual"
+                                            [value]="'respuesta_ans4_' + preguntaActual"
+                                            [(ngModel)]="respuestaSeleccionada[preguntaActual]"
+                                            (click)="toggleActive('respuesta_ans4_' + preguntaActual, preguntaActual,'ans4')"
+                                            [checked]="respuestaSeleccionada[preguntaActual] === 'respuesta_ans4_' + preguntaActual" />
+                                    </div>
+                                    <!--end::Radio-->
+                                    <!--begin::Info-->
+                                    <div class="flex-grow-1">
+                                        <div
+                                            class="d-flex align-items-center fs-6 flex-wrap">{{
+                                            preguntas[preguntaActual].ans4
+                                            }}</div>
+
+                                    </div>
+                                    <!--end::Info-->
+
+                                    <div
+                                        class="d-flex justify-content-center mb-3"
+                                        *ngIf="preguntas[preguntaActual].ban_imgr4 == 1">
+                                        <img
+                                            *ngIf="preguntas[preguntaActual].imgr4"
+                                            [src]="preguntas[preguntaActual].imgr4| pregunta:preguntas[preguntaActual].id.toString() :materia_id "
+                                            class="img-fluid mb-2"
+                                            width='150'
+                                            heigth='150'>
+                                    </div>
+                                </div>
+                                <!--end::Description-->
+
+                            </label>
+                            <!--end::Tab link-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--end::Tabs-->
+            </div>
+        </div>
+    </section>
+
+    <div class="d-flex justify-content-between py-3 px-5">
+
+        <button class="btn btn-success"
+            (click)="anteriorPregunta()"
+            [disabled]="preguntaActual===0">
+            <i class="fa-solid fa-chevron-left fa-3x"></i>
+            Anterior
+        </button>
+
+        <ul class="pagination pagination-circle">
+            <li class="page-item" *ngFor="let numero of numeros"
+                [class.active]="numero === preguntaActual">
+                <a href="javascript:void(0)" class="page-link"
+                    [class.disabled]="!respuestaSeleccionada[numero]"
+                    (click)="seleccionarPagina(numero)">
+                    {{ numero + 1 }}
+                </a>
+            </li>
+        </ul>
+        
+        <button class="btn btn-success"
+            (click)="siguientePregunta()"
+            [disabled]="!respuestaSeleccionada[preguntaActual]">
+            <span *ngIf="preguntaActual+1 === preguntas.length">
+                Terminar
+            </span>
+            <span *ngIf="preguntaActual+1 !== preguntas.length">
+                Siguiente
+            </span>
+            <i class="fa-solid fa-chevron-right fa-3x"></i>
+        </button>
+    </div>
+</ng-container>
+
+<ng-container>
+
+</ng-container>

@@ -1,0 +1,66 @@
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header border-0 pt-5">
+
+                <!--begin::Heading-->
+                <div class="mb-1 text-center">
+                    <!--begin::Title-->
+                    <h1 class="mb-1">Listado de resultados por simulacros</h1>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+
+                <div class="card-toolbar">
+                    <!--begin::Toolbar-->
+                    <div class="d-flex justify-content-end"
+                        data-kt-user-table-toolbar="base">
+                        <!--begin::Add user-->
+                        <a [routerLink]="['/dashboard']"
+                            class="btn btn-danger">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                            <i class="ki-duotone ki-arrow-left">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <!--end::Svg Icon-->
+                            Volver
+                        </a>
+                        <!--end::Add user-->
+                    </div>
+                    <!--end::Toolbar-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3 justify-content-center">
+    <div class="col-md-3 col-sm-6 me-5" *ngFor="let simulacro of simulacros">
+        <div class="card shadow-sm card-xl-stretch mb-xl-8">
+            <a [routerLink]="['/sesiones',simulacro.id]">
+
+                <img
+                    [src]="simulacro.imagen | imagen:simulacro.id.toString() :'simulacros' "
+                    class="img-fluid" [alt]="simulacro.nombre">
+                <div
+                    class="card-footer d-flex align-items-center justify-content-between"
+                    [ngStyle]="{'background-color': coloresTarjetas[simulacro.id.toString()], 'border-radius': '0 0 .625rem .625rem','padding': '10px'}">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
