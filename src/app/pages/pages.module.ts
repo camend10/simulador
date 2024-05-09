@@ -39,6 +39,7 @@ import { MateriasComponent } from './simulacros/materias/materias.component';
 import { PreguntasComponent } from './simulacros/preguntas/preguntas.component';
 import { ResultSimulacrosComponent } from './resultados/result-simulacros/result-simulacros.component';
 import { ResultadoComponent } from './resultados/resultado/resultado.component';
+import { EntrenadorComponent } from './entrenador/entrenador.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,8 @@ import { ResultadoComponent } from './resultados/resultado/resultado.component';
         MateriasComponent,
         PreguntasComponent,
         ResultSimulacrosComponent,
-        ResultadoComponent
+        ResultadoComponent,
+        EntrenadorComponent
     ],
     exports: [
         DashboardComponent,

@@ -43,6 +43,16 @@ export class SimulacroService {
     return this.http.post(url, data);
   }
 
+  cargarMateriasEntrenador = () => {
+    let url = URL_SERVICIOS + '/materias';
+
+    let data = {
+      txtbusqueda: ''
+    };
+
+    return this.http.post(url, data);
+  }
+
   cargarPreguntas = (id: number, sesion_id: number) => {
     let url = URL_SERVICIOS + '/simulacros/preguntas';
 
@@ -54,7 +64,19 @@ export class SimulacroService {
     return this.http.post(url, data);
   }
 
-  guardarResultado(simulacro_id: number, sesion_id: number, materia_id: number, correctas: number, user_id: number) {
+  cargarPreguntas2 = (materia_id: number, numpre: number) => {
+    let url = URL_SERVICIOS + '/simulacros/preguntas2';
+
+    let data = {
+      materia_id: materia_id,
+      numpre: numpre
+    };
+
+    return this.http.post(url, data);
+  }
+
+  guardarResultado(simulacro_id: number, sesion_id: number, materia_id: number, correctas: number, user_id: number, respCorreptasIds: number[], respCorreptasIdsValues: number[]) {
+
     let url = URL_SERVICIOS + '/simulacros/guardar-resultados';
 
     let data = {
@@ -62,7 +84,9 @@ export class SimulacroService {
       sesion_id: sesion_id,
       materia_id: materia_id,
       user_id: user_id,
-      correctas: correctas
+      correctas: correctas,
+      respCorreptasIds: respCorreptasIds,
+      respCorreptasIdsValues: respCorreptasIdsValues
     };
 
     return this.http.post(url, data);

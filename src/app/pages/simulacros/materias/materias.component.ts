@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class MateriasComponent {
 
-  materias: Materia[] = [];
+  materias: any[] = [];
 
   cargando: boolean = true;
   simulacro_id: number = 0;
@@ -64,7 +64,7 @@ export class MateriasComponent {
           Swal.fire({
             title: "Verificando!",
             text: 'La sesión ya se encuentra realizada',
-            icon: "success"
+            icon: "info"
           });
           setTimeout(() => {
             this.router.navigate(['/sesiones', this.simulacro_id]);
@@ -93,6 +93,7 @@ export class MateriasComponent {
       )
       .subscribe((resp: any) => {
         this.materias = resp.materias;
+        
         this.cargando = false;
         this.inicializarColoresTarjetas();
       })

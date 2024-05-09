@@ -11,6 +11,6 @@ export { InstitucionService } from './institucion/institucion.service';
 export { InterceptorService } from './interceptors/interceptor.service';
 export { SimulacroService } from './simulacros/simulacro.service';
 export { ResultadoService } from './resultados/resultado.service';
-
+export { EntrenadorService } from './entrenador/entrenador.service';
 
 

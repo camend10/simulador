@@ -27,10 +27,14 @@ export class PreguntasComponent implements OnInit {
   respCorreptas: number[] = [];
   preguntasVisitadas: boolean[] = new Array(this.preguntas.length).fill(false);
 
+  respCorreptasIds: number[] = [];
+  respCorreptasIdsValues: number[] = [];
 
+  intervalId: any;
   horas: number = 0;
   minutos: number = 0;
   segundos: number = 0;
+  tiempoTotal: number = 0;
 
   progreso1: string = '0';
 
@@ -51,9 +55,6 @@ export class PreguntasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.incrementarSegundos();
-    }, 1000);
   }
 
   verificarPrueba() {
@@ -86,7 +87,7 @@ export class PreguntasComponent implements OnInit {
           Swal.fire({
             title: "Verificando!",
             text: 'La prueba ya se encuentra realizada',
-            icon: "success"
+            icon: "info"
           });
           setTimeout(() => {
             this.router.navigate(['/materias', this.simulacro_id, this.sesion_id]);
@@ -117,6 +118,7 @@ export class PreguntasComponent implements OnInit {
       .subscribe((resp: any) => {
         this.preguntas = resp.preguntas;
         this.materia = resp.materia;
+        this.tiempoTotal = resp.tiempoTotal;
         if (this.respuestaSeleccionada.length !== this.preguntas.length) {
           this.respuestaSeleccionada = new Array(this.preguntas.length).fill('');
         }
@@ -124,6 +126,9 @@ export class PreguntasComponent implements OnInit {
           this.numeros.push(i);
         }
         this.cargando = false;
+        this.intervalId = setInterval(() => {
+          this.incrementarSegundos();
+        }, 1000);
       })
   }
 
@@ -142,9 +147,12 @@ export class PreguntasComponent implements OnInit {
     let escojida = 'ans' + correcta;
     if (opcion === escojida) {
       this.respCorreptas[this.preguntaActual] = 1;
+      this.respCorreptasIdsValues[this.preguntaActual] = 1;
     } else {
       this.respCorreptas[this.preguntaActual] = 0;
+      this.respCorreptasIdsValues[this.preguntaActual] = 0;
     }
+    this.respCorreptasIds[this.preguntaActual] = this.preguntas[actual].id;
   }
 
   isActive(respuesta: string): boolean {
@@ -152,10 +160,57 @@ export class PreguntasComponent implements OnInit {
   }
 
   incrementarSegundos() {
-    this.segundos++;
-    if (this.segundos === 60) {
-      this.segundos = 0;
-      this.incrementarMinutos();
+
+    if ((this.horas * 3600 + this.minutos * 60 + this.segundos) >= this.tiempoTotal) {
+      clearInterval(this.intervalId);
+      Swal.fire({
+        title: "Tiempo terminado!",
+        text: 'Se ha terminado el tiempo de la prueba de ' + this.materia,
+        icon: "info"
+      });
+      // Detener el quiz o realizar alguna acción cuando se alcanza el tiempo límite
+      let suma: number = this.respCorreptas.reduce((total, actual) => total + actual, 0);
+
+      let user_id = this._usuarioService.usuario.id;
+      this.cargando = true;
+      this._simulacroService.guardarResultado(this.simulacro_id, this.sesion_id, this.materia_id, suma, user_id, this.respCorreptasIds, this.respCorreptasIdsValues)
+        .pipe(
+          catchError(error => {
+            this.cargando = false;
+            if (error.error.errors) {
+              this.mostrarError(error.error.errors);
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: error.error.error,
+                icon: "error"
+              });
+            }
+            setTimeout(() => {
+              this.router.navigate(['/materias', this.simulacro_id, this.sesion_id]);
+            }, 1000);
+            return EMPTY;
+          })
+        )
+        .subscribe(resp => {
+          this.cargando = false;
+          this.isQuizCompleto = true;
+          this.horas = 0;
+          this.minutos = 0;
+          this.segundos = 0;
+          this.tiempoTotal = 0;
+          setTimeout(() => {
+            this.router.navigate(['/materias', this.simulacro_id, this.sesion_id]);
+          }, 1000);
+        });
+    } else {
+
+      this.segundos++;
+      if (this.segundos === 60) {
+        this.segundos = 0;
+        this.incrementarMinutos();
+      }
+
     }
   }
 
@@ -175,14 +230,19 @@ export class PreguntasComponent implements OnInit {
     if (this.preguntaActual < this.preguntas.length) {
       this.preguntaActual++;
       this.obtenerPorcentaje();
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 200);
       // Reiniciar la respuesta seleccionada al pasar a la siguiente pregunta
       // this.respuestaSeleccionada[this.preguntaActual] = '';
     }
     if ((this.preguntaActual) === this.preguntas.length) {
+      clearInterval(this.intervalId);
       let suma: number = this.respCorreptas.reduce((total, actual) => total + actual, 0);
+
       let user_id = this._usuarioService.usuario.id;
       this.cargando = true;
-      this._simulacroService.guardarResultado(this.simulacro_id, this.sesion_id, this.materia_id, suma, user_id)
+      this._simulacroService.guardarResultado(this.simulacro_id, this.sesion_id, this.materia_id, suma, user_id, this.respCorreptasIds, this.respCorreptasIdsValues)
         .pipe(
           catchError(error => {
             this.cargando = false;

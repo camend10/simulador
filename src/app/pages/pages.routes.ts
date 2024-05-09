@@ -17,6 +17,8 @@ import { SesionesComponent } from "./simulacros/sesiones/sesiones.component";
 import { MateriasComponent } from "./simulacros/materias/materias.component";
 import { PreguntasComponent } from "./simulacros/preguntas/preguntas.component";
 import { ResultSimulacrosComponent } from "./resultados/result-simulacros/result-simulacros.component";
+import { ResultadoComponent } from "./resultados/resultado/resultado.component";
+import { EntrenadorComponent } from "./entrenador/entrenador.component";
 
 const routes: Routes = [
 
@@ -150,6 +152,28 @@ const routes: Routes = [
         data: {
             titulo: 'Resultados por simulacros',
             subtitulo: 'Resultados',
+            volver: 'dashboard'
+        }
+    },
+    {
+        path: 'resultado/:simulacro_id',
+        component: ResultadoComponent,
+        canActivate: [verificaTokenGuard],
+        data: {
+            titulo: 'Resultado',
+            subtitulo: 'Resultado simulacro',
+            volver: 'dashboard'
+        }
+    },
+
+    // Entrenador
+    {
+        path: 'entrenador',
+        component: EntrenadorComponent,
+        canActivate: [verificaTokenGuard],
+        data: {
+            titulo: 'Entrenador',
+            subtitulo: 'Entrenador',
             volver: 'dashboard'
         }
     },

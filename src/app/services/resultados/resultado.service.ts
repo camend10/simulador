@@ -22,4 +22,15 @@ export class ResultadoService {
     return this.http.post(url, data);
   }
 
+  verificarResultadoSesiones(simulacro_id: number, user_id: number) {
+    let url = URL_SERVICIOS + '/simulacros/verificar-resultado-sesiones';
+
+    let data = {
+      simulacro_id: simulacro_id,
+      user_id: user_id
+    };
+
+    return this.http.post(url, data);
+  }
+
 }

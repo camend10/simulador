@@ -1,4 +1,3 @@
-
 <div class="row" *ngIf="cargando">
     <div class="col-sm-12">
         <div class="alert alert-dismissible bg-info text-center ">
@@ -11,57 +10,95 @@
     </div>
 </div>
 
-<ng-container *ngIf="getCurrentPregunta() !== null">
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow-sm">
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header border-0 pt-5">
 
-                <div class="d-flex justify-content-between py-3 px-5">
-                    <div class="score d-flex align-items-center">
-                        <span class="text-gray-900 fs-3 fw-bold">
-                            <span class="text-info">
-                                Pregunta {{
-                                preguntaActual + 1 }} de {{
-                                preguntas.length }}
-                            </span>
-                            <h2 class="mb-1 fs-2 fw-bold text-info"
-                                *ngIf="materia !='' ">Pruba diagnóstica: <span class="text-danger">{{ materia
-                                }}</span></h2>
-                        </span>
+                <!--begin::Heading-->
+                <div class="mb-1 text-center">
+                    <!--begin::Title-->
+                    <h1 class="mb-1">Entrena a tu ritmo por área del saber</h1>
+                    <h2 class="mb-1 text-danger fs-2 fw-bold"
+                        *ngIf="materia !='' ">Entrenando: {{ materia }}</h2>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+
+                <div class="card-toolbar">
+                    <!--begin::Toolbar-->
+                    <div class="d-flex justify-content-end"
+                        data-kt-user-table-toolbar="base">
+                        <!--begin::Add user-->
+                        <a [routerLink]="['/dashboard']"
+                            class="btn btn-danger me-2">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                            <i class="ki-duotone ki-arrow-left">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <!--end::Svg Icon-->
+                            Volver
+                        </a>
+                        <!--end::Add user-->
+                        <!--begin::Add user-->
+                        <a href="javascript:void(0)" (click)="nuevo()"
+                            *ngIf="empezar"
+                            class="btn btn-success">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                            <i class="ki-duotone ki-google-play">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <!--end::Svg Icon-->
+                            Empezar
+                        </a>
+                        <!--end::Add user-->
                     </div>
-                    <div class="pregunta ">
-                        <span class="text-gray-900 fs-3 fw-bold">
-                            <h1 class="mb-1 text-info">Simulacro {{ simulacro_id
-                                }}</h1>
-                            <h3
-                                class="mb-1 text-info d-flex justify-content-center">Sesión
-                                {{ sesion_id }}</h3>
-                        </span>
-                    </div>
-
-                    <div class="timer ">
-
-                        <h2
-                            class="text-gray-900 fs-3 fw-bold d-flex justify-content-center">
-                            <span class="text-info">
-                                Tiempo
-                            </span>
-                        </h2>
-                        <p class="text-gray-900 fs-3 fw-bold">
-                            <span class="text-info">
-                                {{ horas | number: '2.0-0'}} : {{ minutos |
-                                number:
-                                '2.0-0'}} : {{ segundos | number: '2.0-0'}}
-                            </span>
-                        </p>
-                    </div>
-
+                    <!--end::Toolbar-->
                 </div>
 
             </div>
         </div>
     </div>
+</div>
 
+<ng-container *ngIf="!empezar">
+
+    <div class="row mt-3 ">
+
+        <div class="col-md-12 col-sm-6 me-5">
+            <select name="num_preguntas" id="num_preguntas"
+                class="form-control" [(ngModel)]="numpre">
+                <option value="5">5 Preguntas</option>
+                <option value="10">10 Preguntas</option>
+                <option value="15">15 Preguntas</option>
+                <option value="20">20 Preguntas</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-2 col-sm-6 me-5" *ngFor="let materia of materias">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8">
+                <a (click)="btnEmpezar(materia.id)" href="javascript:void(0)">
+
+                    <img
+                        [src]="materia.imagen | imagen:materia.id.toString() :'materias' "
+                        class="img-fluid" [alt]="materia.test_name">
+                    <div
+                        class="card-footer d-flex align-items-center justify-content-between"
+                        [ngStyle]="{'background-color': coloresTarjetas[materia.id.toString()], 'border-radius': '0 0 .625rem .625rem','padding': '10px'}">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="getCurrentPregunta() !== null">
     <div class="row mt-2">
         <div class="col-12">
             <div class="card shadow-sm">
@@ -88,6 +125,15 @@
                 <div class="card mb-1 mb-xl-1 shadow-sm">
                     <!--begin::Body-->
                     <div class="card-body pb-0">
+                        <div class="score d-flex align-items-center">
+                            <span class="text-gray-900 fs-3 fw-bold">
+                                <span class="text-info">
+                                    Pregunta {{
+                                    preguntaActual + 1 }} de {{
+                                    preguntas.length }}
+                                </span>
+                            </span>
+                        </div>
                         <!--begin::Header-->
                         <div class="d-flex align-items-center mb-1">
                             <!--begin::User-->
@@ -164,11 +210,16 @@
 
                     <div class="card mb-1 mb-xl-8 shadow-sm">
                         <div class="card-body pb-0">
+
                             <!--begin::Tab link-->
                             <label
                                 class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
                                 data-bs-toggle="tab"
-                                [ngClass]="{ 'active': isActive('respuesta_ans1_' + preguntaActual) }">
+                                [ngClass]="{
+                                    'btn-success': isActive('respuesta_ans1_' + preguntaActual) && respCorreptas[preguntaActual] === 1,
+                                    'btn-danger': isActive('respuesta_ans1_' + preguntaActual) && respCorreptas[preguntaActual] === 0,
+                                    '': !respuestaSeleccionada[preguntaActual] || respuestaSeleccionada[preguntaActual] !== 'respuesta_ans1_' + preguntaActual
+                                }">
                                 <!--end::Description-->
                                 <div class="d-flex align-items-center me-2">
                                     <!--begin::Radio-->
@@ -227,7 +278,11 @@
                             <label
                                 class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
                                 data-bs-toggle="tab"
-                                [ngClass]="{ 'active': isActive('respuesta_ans2_' + preguntaActual) }">
+                                [ngClass]="{
+                                    'btn-success': isActive('respuesta_ans2_' + preguntaActual) && respCorreptas[preguntaActual] === 1,
+                                    'btn-danger': isActive('respuesta_ans2_' + preguntaActual) && respCorreptas[preguntaActual] === 0,
+                                    '': !respuestaSeleccionada[preguntaActual] || respuestaSeleccionada[preguntaActual] !== 'respuesta_ans2_' + preguntaActual
+                                }">
                                 <!--end::Description-->
                                 <div class="d-flex align-items-center me-2">
                                     <!--begin::Radio-->
@@ -285,7 +340,11 @@
                             <label
                                 class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
                                 data-bs-toggle="tab"
-                                [ngClass]="{ 'active': isActive('respuesta_ans3_' + preguntaActual) }">
+                                [ngClass]="{
+                                    'btn-success': isActive('respuesta_ans3_' + preguntaActual) && respCorreptas[preguntaActual] === 1,
+                                    'btn-danger': isActive('respuesta_ans3_' + preguntaActual) && respCorreptas[preguntaActual] === 0,
+                                    '': !respuestaSeleccionada[preguntaActual] || respuestaSeleccionada[preguntaActual] !== 'respuesta_ans3_' + preguntaActual
+                                }">
                                 <!--end::Description-->
                                 <div class="d-flex align-items-center me-2">
                                     <!--begin::Radio-->
@@ -343,7 +402,11 @@
                             <label
                                 class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active-primary d-flex flex-stack text-start p-6 mb-6"
                                 data-bs-toggle="tab"
-                                [ngClass]="{ 'active': isActive('respuesta_ans4_' + preguntaActual) }">
+                                [ngClass]="{
+                                    'btn-success': isActive('respuesta_ans4_' + preguntaActual) && respCorreptas[preguntaActual] === 1,
+                                    'btn-danger': isActive('respuesta_ans4_' + preguntaActual) && respCorreptas[preguntaActual] === 0,
+                                    '': !respuestaSeleccionada[preguntaActual] || respuestaSeleccionada[preguntaActual] !== 'respuesta_ans4_' + preguntaActual
+                                }">
                                 <!--end::Description-->
                                 <div class="d-flex align-items-center me-2">
                                     <!--begin::Radio-->
@@ -391,36 +454,117 @@
         </div>
     </section>
 
-    <div class="d-flex justify-content-between py-3 px-5">
+</ng-container>
 
-        <button class="btn btn-success"
-            (click)="anteriorPregunta()"
-            [disabled]="preguntaActual===0">
-            <i class="fa-solid fa-chevron-left fa-3x"></i>
-            Anterior
-        </button>
+<ng-container *ngIf="isQuizCompleto">
+    <div class="row mt-2">
+        <div class="col-12">
+            <!--begin::Feeds Widget 1-->
+            <div class="card mb-1 mb-xl-1 shadow-sm">
+                <!--begin::Body-->
+                <div class="card-body pb-0">
+                    <!--begin::Heading-->
+                    <div class="mb-1 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-1">Resultado Final</h1>
+                        <h2 class="mb-1 fs-2 fw-bold"
+                            *ngIf="materia !='' ">Area: <span
+                                class="text-info">{{ materia
+                                }}</span></h2>
+                        <h3 class="mb-1">Total Preguntas: {{ numpre }}</h3>
+                        <h3 class="mb-1 text-success">Respuestas Correctas: {{
+                            suma }}</h3>
+                        <h3 class="mb-1 text-danger">Respuestas Incorrectas: {{
+                            numpre - suma
+                            }}</h3>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Heading-->
 
-        <ul class="pagination pagination-circle">
-            <li class="page-item" *ngFor="let numero of numeros"
-                [class.active]="numero === preguntaActual">
-                <a href="javascript:void(0)" class="page-link"
-                    [class.disabled]="!respuestaSeleccionada[numero]"
-                    (click)="seleccionarPagina(numero)">
-                    {{ numero + 1 }}
-                </a>
-            </li>
-        </ul>
+                    <div class="separator"></div>
 
-        <button class="btn btn-success"
-            (click)="siguientePregunta()"
-            [disabled]="!respuestaSeleccionada[preguntaActual]">
-            <span *ngIf="preguntaActual+1 === preguntas.length">
-                Terminar
-            </span>
-            <span *ngIf="preguntaActual+1 !== preguntas.length">
-                Siguiente
-            </span>
-            <i class="fa-solid fa-chevron-right fa-3x"></i>
-        </button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--begin::Product table-->
+                            <div class="table-responsive">
+                                <!--begin::Table-->
+                                <table
+                                    class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                                    <!--begin::Table head-->
+                                    <thead>
+
+                                        <!--begin::Table row-->
+                                        <tr
+                                            class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="min-w-100px">#</th>
+                                            <th
+                                                class="min-w-150px">Pregunta</th>
+                                            <th
+                                                class="min-w-125px">Respuesta</th>
+                                            <th
+                                                class="min-w-125px">Correcta</th>
+                                            <th class="min-w-125px">Estado</th>
+                                        </tr>
+                                        <!--end::Table row-->
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody class="fw-semibold text-gray-800"
+                                        *ngFor="let pre of preguntas; let i = index">
+                                        <tr>
+                                            <td>
+                                                <label class="w-100px">{{
+                                                    (i + 1) }}</label>
+                                            </td>
+                                            <td>
+                                                <span
+                                                    style="text-align: justify;"
+                                                    class="w-100px">{{
+                                                    pre.que_desc
+                                                    }}</span>
+                                            </td>
+                                            <td>
+                                                <span
+                                                    style="text-align: justify;"
+                                                    class="w-100px">{{
+                                                    preguntaSel(respuestaSeleccionada[i],
+                                                    i)
+                                                    }}</span>
+                                            </td>
+                                            <td>
+                                                <span
+                                                    style="text-align: justify;"
+                                                    class="w-100px">{{
+                                                    preguntaCor(pre.true_ans,i)
+                                                    }}</span>
+                                            </td>
+                                            <td>
+                                                <span
+                                                    *ngIf="condicion(respuestaSeleccionada[i],pre.true_ans,i)"><i
+                                                        class="fa-solid fa-check text-success fs-4x"></i></span>
+                                                <span
+                                                    *ngIf="!condicion(respuestaSeleccionada[i],pre.true_ans,i)"><i
+                                                        class="fa-solid fa-xmark text-danger fs-4x"></i></span>
+                                                <!-- <div
+                                                    [style.background-color]="condicion(respuestaSeleccionada[i],pre.true_ans,i) ? 'red' : 'green'"
+                                                    >hola</div> -->
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Product table-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::Feeds Widget 1-->
+
+        </div>
     </div>
 </ng-container>

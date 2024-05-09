@@ -1,0 +1,112 @@
+.minimo{
+    background: #f9b234;
+}
+
+.content-info{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:.25rem
+}
+
+.content-info,
+.info-puntaje {
+    margin:.5rem;
+    border-radius:.75rem;
+    border-width:2px;
+    --tw-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
+    box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+    /* background-color:hsla(0,0%,100%,.8) */
+}
+
+.info-puntaje {
+    grid-column:span 1/span 1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:.5rem;
+    background-color:hsla(0,0%,100%,.8);
+    height: 156px;
+	width: 130.2px;
+}
+
+.info-puntaje p {
+    font-size:1.125rem;
+    line-height:1.75rem
+}
+
+.info-puntaje .promedio,
+.info-puntaje p {
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-weight:600
+}
+
+.info-puntaje .promedio {
+    font-size:3rem;
+    line-height:1;
+    --tw-text-opacity:1;
+    color:rgba(0,0,0,var(--tw-text-opacity))
+}
+
+.info-descripcion {
+    grid-column:span 3/span 3;
+    display:flex;
+    flex-direction:column;
+    color:#faf3e0!important
+  }
+  .info-descripcion nz-divider {
+    font-size:1.875rem;
+    line-height:2.25rem;
+    font-weight:600
+  }
+
+/* 
+.content-info{
+    display: grid;
+    grid-template-columns: repeat(5,minmax(0,1fr));
+    gap: .25rem;
+} */
+
+/* .info-puntaje{
+    grid-column: span 1/span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: .1rem;
+    margin: .1rem;
+    border-radius: .75rem;
+    border-width: 2px;
+    --tw-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+    background-color: hsla(0,0%,100%,.8);    
+}
+
+.info-puntaje p{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.75rem;    
+}
+
+.ant-typography {
+    color: rgba(0,0,0,.85);
+    overflow-wrap: break-word;
+}
+
+.info-puntaje .promedio{
+    font-size: 3rem;
+    line-height: 1;
+    --tw-text-opacity: 1;
+    color: rgba(0,0,0,var(--tw-text-opacity));
+}
+
+.info-puntaje .promedio, .info-puntaje p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-weight: 600;
+  } */
+

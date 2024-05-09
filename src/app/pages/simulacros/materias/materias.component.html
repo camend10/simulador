@@ -82,7 +82,7 @@
                             <!--end::Content-->
                         </div>
                         <!--end::Wrapper-->
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,6 +100,9 @@
                 <div
                     class="card-footer d-flex align-items-center justify-content-between"
                     [ngStyle]="{'background-color': coloresTarjetas[materia.id.toString()], 'border-radius': '0 0 .625rem .625rem','padding': '10px'}">
+                    <span class="text-white fs-6 fw-bold d-flex align-items-center justify-content-center">
+                        {{ materia.numpre }} Preguntas
+                    </span>
                 </div>
             </a>
         </div>

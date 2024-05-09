@@ -1,1 +1,973 @@
-<p>resultado works!</p>
+<div class="row" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-dismissible bg-info text-center ">
+            <strong class="text-light">Cargando</strong>
+            <br>
+            <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span class="text-light">Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm ">
+            <div class="card-header border-0 pt-5 d-flex align-items-center">
+
+                <!--begin::Heading-->
+                <div class="mb-1 text-center d-flex justify-content-center">
+                    <!--begin::Title-->
+                    <h1 class="mb-1">Resultados de la prueba diagnostico {{
+                        simulacro_id
+                        }}</h1>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+
+                <div class="card-toolbar ">
+                    <!--begin::Toolbar-->
+                    <div class="d-flex justify-content-end"
+                        data-kt-user-table-toolbar="base">
+                        <!--begin::Add user-->
+                        <a [routerLink]="['/resultados-simulacros']"
+                            class="btn btn-danger">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                            <i class="ki-duotone ki-arrow-left">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <!--end::Svg Icon-->
+                            Volver
+                        </a>
+                        <!--end::Add user-->
+                    </div>
+                    <!--end::Toolbar-->
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="infoCompleta">
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <!--begin::Layout-->
+            <div class="d-flex flex-column flex-lg-row">
+                <!--begin::Content-->
+                <div
+                    class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
+                    <!--begin::Card-->
+                    <div class="card card-flush pt-3 mb-5 mb-xl-10">
+                        <!--begin::Card header-->
+                        <div class="card-header ">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <h2
+                                    class="fw-bold d-flex align-items-center">Información
+                                    del estudiante</h2>
+                            </div>
+                            <!--begin::Card title-->
+
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-3">
+                            <!--begin::Section-->
+                            <div class="mb-10">
+                                <h1 class="fs-2x text-gray-900 mb-6">{{
+                                    usuario.name }}</h1>
+
+                                <div class="table-responsive">
+                                    <table
+                                        class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                        <thead>
+                                            <!--begin::Table row-->
+                                            <tr
+                                                class="text-start fw-bolder fs-4  gs-0">
+                                                <th
+                                                    class="min-w-125px text-center">Puesto</th>
+                                                <th
+                                                    class="min-w-125px text-center">Estudiantes
+                                                    evaluados</th>
+                                                <th
+                                                    class="min-w-125px text-center">Grado</th>
+                                                <th
+                                                    class="min-w-125px text-center">#
+                                                    De Preguntas</th>
+                                            </tr>
+                                            <!--end::Table row-->
+                                        </thead>
+
+                                        <tbody>
+                                            <td
+                                                style='font-weight: bold;vertical-align: middle;'
+                                                class="text-center">{{ puesto }}
+                                                de
+                                                {{ totalEstudiantes }}
+                                            </td>
+                                            <td
+                                                style='font-weight: bold;vertical-align: middle;'
+                                                class="text-center">
+                                                {{ totalEstudiantes }}
+                                            </td>
+                                            <td
+                                                style='font-weight: bold;vertical-align: middle;'
+                                                class="text-center">
+                                                {{ grado }}
+                                            </td>
+                                            <td
+                                                style='font-weight: bold;vertical-align: middle;'
+                                                class="text-center">
+                                                {{ totalPreguntas }}
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!--begin::Details-->
+                                <div class="d-flex flex-wrap py-5">
+
+                                    <!-- VA AQUI -->
+
+                                </div>
+                                <!--end::Row-->
+                            </div>
+                            <!--end::Section-->
+                            <!--begin::Section-->
+                            <div class="mb-0">
+                                <!--begin::Title-->
+                                <h3 class="mb-4">Resultados:</h3>
+                                <!--end::Title-->
+                                <!--begin::Product table-->
+                                <div class="table-responsive">
+                                    <!--begin::Table-->
+                                    <table
+                                        class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                                        <!--begin::Table head-->
+                                        <thead>
+                                            <tr
+                                                class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-4 text-uppercase gs-0">
+                                                <td class="min-w-125px">Puntaje
+                                                    Gobal</td>
+                                                <td
+                                                    class="min-w-125px">
+                                                    <span
+                                                        class="fs-2 badge badge-light-danger">{{
+                                                        global |
+                                                        number:'1.2-2' }} / {{
+                                                        sobre1
+                                                        }}</span></td>
+                                                <th class="min-w-125px"></th>
+                                            </tr>
+                                            <!--begin::Table row-->
+                                            <tr
+                                                class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                                                <th
+                                                    class="min-w-150px">Area</th>
+                                                <th
+                                                    class="min-w-125px">Puntaje</th>
+                                                <th
+                                                    class="min-w-125px">Duración</th>
+                                                <th
+                                                    class="min-w-125px">Sesión</th>
+                                                <th class="min-w-125px">#
+                                                    Preguntas</th>
+                                            </tr>
+                                            <!--end::Table row-->
+                                        </thead>
+                                        <!--end::Table head-->
+                                        <!--begin::Table body-->
+                                        <tbody class="fw-semibold text-gray-800"
+                                            *ngFor="let punt of puntaje">
+                                            <tr>
+                                                <td>
+                                                    <label class="w-150px">{{
+                                                        punt.materia }}</label>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="badge badge-light-danger">{{
+                                                        punt.puntaje_total |
+                                                        number:'1.2-2' }} / {{
+                                                        sobre2
+                                                        }}</span>
+                                                </td>
+                                                <td>
+                                                    <label class="w-150px">60
+                                                        (min)</label>
+                                                </td>
+                                                <td>
+                                                    @if(punt.materia
+                                                    =='Ingles'){
+                                                    <label
+                                                        class="w-150px">S2</label>
+                                                    }@else{
+                                                    @if(punt.materia
+                                                    =='Lectura Critica'){
+                                                    <label
+                                                        class="w-150px">S1</label>
+                                                    }@else{
+                                                    <label
+                                                        class="w-150px">Ambas</label>
+                                                    }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if(punt.materia
+                                                    =='Ingles'){
+                                                    <label class="w-150px">45 x
+                                                        Sesion</label>
+                                                    }@else{
+                                                    @if(punt.materia
+                                                    =='Lectura Critica'){
+                                                    <label class="w-150px">41 x
+                                                        Sesion</label>
+                                                    }@else{
+                                                    @if(punt.materia
+                                                    =='Matemáticas'){
+                                                    <label class="w-150px">25 x
+                                                        Sesion</label>
+                                                    }@else {
+                                                    @if(punt.materia
+                                                    =='Sociales y Ciudadanas'){
+                                                    <label class="w-150px">25 x
+                                                        Sesion</label>
+
+                                                    }@else {
+                                                    <label class="w-150px">29 x
+                                                        Sesion</label>
+                                                    }
+                                                    }
+                                                    }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!--end::Table body-->
+                                    </table>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Product table-->
+                            </div>
+                            <!--end::Section-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Card-->
+
+                </div>
+                <!--end::Content-->
+                <!--begin::Sidebar-->
+                <div
+                    class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
+                    <!--begin::Card-->
+                    <div class="card card-flush mb-0" data-kt-sticky="true"
+                        data-kt-sticky-name="subscription-summary"
+                        data-kt-sticky-offset="{default: false, lg: '200px'}"
+                        data-kt-sticky-width="{lg: '250px', xl: '300px'}"
+                        data-kt-sticky-left="auto" data-kt-sticky-top="150px"
+                        data-kt-sticky-animation="false"
+                        data-kt-sticky-zindex="95">
+                        <!--begin::Card header-->
+                        <div class="card-header">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <h2>Estudiante</h2>
+                            </div>
+                            <!--end::Card title-->
+
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-0 fs-6">
+                            <!--begin::Section-->
+                            <div class="mb-7">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div
+                                        class="symbol symbol-60px symbol-circle me-3">
+                                        <img alt="Pic"
+                                            [src]="usuario.foto! | imagen:usuario.id.toString() :usuario.tipo "
+                                            [alt]="usuario.name" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="fs-7 fw-bold text-gray-900 text-hover-primary me-2">{{
+                                            usuario.name }}</a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <a href="#"
+                                            class="fw-semibold text-gray-600 text-hover-primary">{{
+                                            usuario.username }}</a>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Section-->
+                            <!--begin::Seperator-->
+                            <div class="separator separator-dashed mb-7"></div>
+                            <!--end::Seperator-->
+
+                            <!--begin::Section-->
+                            <div class="mb-10">
+                                <!--begin::Title-->
+                                <h5 class="mb-4">{{ institucion.nombre }}</h5>
+                                <!--end::Title-->
+                                <!--begin::Details-->
+                                <table
+                                    class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
+                                    <!--begin::Row-->
+                                    <tr class>
+                                        <td class="text-gray-500">Codigo</td>
+                                        <td class="text-gray-800">{{
+                                            institucion.codigo }}</td>
+                                    </tr>
+                                    <!--end::Row-->
+                                    <!--begin::Row-->
+                                    <tr class>
+                                        <td class="text-gray-500">Nit</td>
+                                        <td class="text-gray-800">{{
+                                            institucion.nit
+                                            }}</td>
+                                    </tr>
+                                    <!--end::Row-->
+                                    <!--begin::Row-->
+                                    <tr class>
+                                        <td class="text-gray-500">Telefono:</td>
+                                        <td class="text-gray-800">{{
+                                            institucion.telefono }}</td>
+                                    </tr>
+                                    <!--end::Row-->
+                                    <!--begin::Row-->
+                                    <tr class>
+                                        <td class="text-gray-500">Correo:</td>
+                                        <td class="text-gray-800">{{
+                                            institucion.email }}</td>
+                                    </tr>
+                                    <!--end::Row-->
+                                </table>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Section-->
+
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Card-->
+                </div>
+                <!--end::Sidebar-->
+            </div>
+            <!--end::Layout-->
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header bg-primary">
+                    <h2
+                        class="fw-bold d-flex align-items-center text-white">Estadisticas
+                        del estudiante</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-container>
+        <div class="row mt-1 justify-content-center">
+            <!-- Matematica -->
+            <div class="col-6">
+                <div class="card shadow-sm">
+
+                    <div
+                        class="card-header bg-warning d-flex justify-content-between py-3 px-5">
+                        <div class="score d-flex align-items-center">
+                            <div class="info-puntaje">
+                                <p class="ant-typography">Puntaje</p>
+                                <p class="promedio">{{ puntaje[0].puntaje_total
+                                    |
+                                    number:'1.2-2' }}</p>
+                            </div>
+                        </div>
+                        <div
+                            class="pregunta d-flex align-items-center justify-content-center flex-grow-1">
+                            <span class="text-gray-900 fs-3 fw-bold">
+                                <h1 class="mb-1 ">{{ puntaje[0].materia }}</h1>
+                            </span>
+                        </div>
+                        <div class="timer">
+                            <h2 class="text-gray-900 fs-3 fw-bold text-center">
+                                <span class="text-info"></span>
+                            </h2>
+                            <p class="text-gray-900 fs-3 fw-bold">
+                                <span class="text-info"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="mb-1">Promedio por componentes</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-border table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-warning">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Componente</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compo of resComponentesMatematicas">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compo.componente }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compo.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Promedio por competencias</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-warning">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Competencia</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compe of resCompetenciasMatematicas">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compe.competencia }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compe.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Lectura Critica -->
+            <div class="col-6">
+                <div class="card shadow-sm">
+
+                    <div
+                        class="card-header bg-primary d-flex justify-content-between py-3 px-5">
+                        <div class="score d-flex align-items-center">
+                            <div class="info-puntaje">
+                                <p class="ant-typography">Puntaje</p>
+                                <p class="promedio">{{ puntaje[1].puntaje_total
+                                    |
+                                    number:'1.2-2' }}</p>
+                            </div>
+                        </div>
+                        <div
+                            class="pregunta d-flex align-items-center justify-content-center flex-grow-1">
+                            <span class="text-gray-900 fs-3 fw-bold">
+                                <h1 class="mb-1 ">{{ puntaje[1].materia }}</h1>
+                            </span>
+                        </div>
+                        <div class="timer">
+                            <h2 class="text-gray-900 fs-3 fw-bold text-center">
+                                <span class="text-info"></span>
+                            </h2>
+                            <p class="text-gray-900 fs-3 fw-bold">
+                                <span class="text-info"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="mb-1">Promedio por componentes</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-border table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-primary">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Componente</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compo of resComponentesLenguaje">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compo.componente }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compo.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Promedio por competencias</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-primary">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Competencia</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compe of resCompetenciasLenguaje">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compe.competencia }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compe.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3 justify-content-center">
+            <!-- Sociales y Ciudadanas -->
+            <div class="col-6">
+                <div class="card shadow-sm">
+
+                    <div
+                        class="card-header bg-info d-flex justify-content-between py-3 px-5">
+                        <div class="score d-flex align-items-center">
+                            <div class="info-puntaje">
+                                <p class="ant-typography">Puntaje</p>
+                                <p class="promedio">{{ puntaje[2].puntaje_total
+                                    |
+                                    number:'1.2-2' }}</p>
+                            </div>
+                        </div>
+                        <div
+                            class="pregunta d-flex align-items-center justify-content-center flex-grow-1">
+                            <span class="text-gray-900 fs-3 fw-bold">
+                                <h1 class="mb-1 ">{{ puntaje[2].materia }}</h1>
+                            </span>
+                        </div>
+                        <div class="timer">
+                            <h2 class="text-gray-900 fs-3 fw-bold text-center">
+                                <span class="text-info"></span>
+                            </h2>
+                            <p class="text-gray-900 fs-3 fw-bold">
+                                <span class="text-info"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="mb-1">Promedio por componentes</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-border table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-info">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Componente</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compo of resComponentesSociales">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compo.componente }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compo.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Promedio por competencias</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-info">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Competencia</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compe of resCompetenciasSociales">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compe.competencia }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compe.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Ciencias Naturales -->
+            <div class="col-6">
+                <div class="card shadow-sm">
+
+                    <div
+                        class="card-header bg-danger d-flex justify-content-between py-3 px-5">
+                        <div class="score d-flex align-items-center">
+                            <div class="info-puntaje">
+                                <p class="ant-typography">Puntaje</p>
+                                <p class="promedio">{{ puntaje[3].puntaje_total
+                                    |
+                                    number:'1.2-2' }}</p>
+                            </div>
+                        </div>
+                        <div
+                            class="pregunta d-flex align-items-center justify-content-center flex-grow-1">
+                            <span class="text-gray-900 fs-3 fw-bold">
+                                <h1 class="mb-1 ">{{ puntaje[0].materia }}</h1>
+                            </span>
+                        </div>
+                        <div class="timer">
+                            <h2 class="text-gray-900 fs-3 fw-bold text-center">
+                                <span class="text-info"></span>
+                            </h2>
+                            <p class="text-gray-900 fs-3 fw-bold">
+                                <span class="text-info"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="mb-1">Promedio por componentes</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-border table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-danger">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Componente</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compo of resComponentesNaturales">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compo.componente }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compo.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Promedio por competencias</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-danger">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Competencia</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compe of resCompetenciasNaturales">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compe.competencia }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compe.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3 justify-content-center">
+            <!-- Ingles -->
+            <div class="col-6">
+                <div class="card shadow-sm">
+
+                    <div
+                        class="card-header bg-success d-flex justify-content-between py-3 px-5">
+                        <div class="score d-flex align-items-center">
+                            <div class="info-puntaje">
+                                <p class="ant-typography">Puntaje</p>
+                                <p class="promedio">{{ puntaje[4].puntaje_total
+                                    |
+                                    number:'1.2-2' }}</p>
+                            </div>
+                        </div>
+                        <div
+                            class="pregunta d-flex align-items-center justify-content-center flex-grow-1">
+                            <span class="text-gray-900 fs-3 fw-bold">
+                                <h1 class="mb-1 ">{{ puntaje[0].materia }}</h1>
+                            </span>
+                        </div>
+                        <div class="timer">
+                            <h2 class="text-gray-900 fs-3 fw-bold text-center">
+                                <span class="text-info"></span>
+                            </h2>
+                            <p class="text-gray-900 fs-3 fw-bold">
+                                <span class="text-info"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="mb-1">Promedio por componentes</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-border table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-success">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Componente</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compo of resComponentesIngles">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compo.componente }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compo.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Promedio por competencias</h2>
+
+                        <div class="table-responsive">
+                            <table
+                                class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+
+                                <thead class="bg-success">
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="text-start fw-bolder fs-4  gs-0">
+                                        <th
+                                            class="min-w-125px text-center">Competencia</th>
+                                        <th
+                                            class="min-w-125px text-center">Promedio</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        *ngFor="let compe of resCompetenciasIngles">
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">{{
+                                            compe.competencia }}
+                                        </td>
+                                        <td
+                                            style='font-weight: bold;vertical-align: middle;'
+                                            class="text-center">
+                                            {{
+                                            returnformateado(compe.porcentaje)
+                                            }}
+                                            /100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+</ng-container>

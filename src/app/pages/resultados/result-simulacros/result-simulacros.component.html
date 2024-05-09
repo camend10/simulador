@@ -18,7 +18,7 @@
                 <!--begin::Heading-->
                 <div class="mb-1 text-center">
                     <!--begin::Title-->
-                    <h1 class="mb-1">Listado de resultados por simulacros</h1>
+                    <h1 class="mb-1">Listado de resultados por prueba diagnóstica</h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Heading-->
@@ -51,7 +51,7 @@
 <div class="row mt-3 justify-content-center">
     <div class="col-md-3 col-sm-6 me-5" *ngFor="let simulacro of simulacros">
         <div class="card shadow-sm card-xl-stretch mb-xl-8">
-            <a [routerLink]="['/sesiones',simulacro.id]">
+            <a [routerLink]="['/resultado',simulacro.id]">
 
                 <img
                     [src]="simulacro.imagen | imagen:simulacro.id.toString() :'simulacros' "
