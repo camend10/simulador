@@ -17,6 +17,14 @@ export class ImagenPipe implements PipeTransform {
       return url += "/" + imagen;
     }
 
+    if (tipo === 'resultados') {
+      let url = URL_IMAGENES + "/imagenes/resultados";
+      if (imagen == 'xxxxx' || imagen == null || imagen == '') {
+        return URL_IMAGENES + "/imagenes/resultados/no-data.png";
+      }
+      return url += "/" + imagen;
+    }
+
     if (tipo === 'sesiones') {
       let url = URL_IMAGENES + "/imagenes/sesiones";
       if (imagen == 'xxxxx' || imagen == null || imagen == '') {

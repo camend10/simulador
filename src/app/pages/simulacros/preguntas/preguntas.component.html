@@ -27,6 +27,8 @@
                             <h2 class="mb-1 fs-2 fw-bold text-info"
                                 *ngIf="materia !='' ">Pruba diagnóstica: <span class="text-danger">{{ materia
                                 }}</span></h2>
+
+                                <!-- quitar -> {{preguntas[preguntaActual].id}} -->
                         </span>
                     </div>
                     <div class="pregunta ">
@@ -99,7 +101,9 @@
                                         class="text-gray-900 text-hover-primary fs-5 fw-bold">
                                         {{
                                         preguntaActual + 1 }}.
-                                        {{preguntas[preguntaActual].que_desc}}</p>
+                                        {{preguntas[preguntaActual].que_desc}}
+                                                                        
+                                    </p>
                                 </div>
                                 <!--end::Info-->
                             </div>

@@ -137,128 +137,10 @@
                                 <!--end::Row-->
                             </div>
                             <!--end::Section-->
-                            <!--begin::Section-->
-                            <div class="mb-0">
-                                <!--begin::Title-->
-                                <h3 class="mb-4">Resultados:</h3>
-                                <!--end::Title-->
-                                <!--begin::Product table-->
-                                <div class="table-responsive">
-                                    <!--begin::Table-->
-                                    <table
-                                        class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
-                                        <!--begin::Table head-->
-                                        <thead>
-                                            <tr
-                                                class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-4 text-uppercase gs-0">
-                                                <td class="min-w-125px">Puntaje
-                                                    Gobal</td>
-                                                <td
-                                                    class="min-w-125px">
-                                                    <span
-                                                        class="fs-2 badge badge-light-danger">{{
-                                                        global |
-                                                        number:'1.2-2' }} / {{
-                                                        sobre1
-                                                        }}</span></td>
-                                                <th class="min-w-125px"></th>
-                                            </tr>
-                                            <!--begin::Table row-->
-                                            <tr
-                                                class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                                <th
-                                                    class="min-w-150px">Area</th>
-                                                <th
-                                                    class="min-w-125px">Puntaje</th>
-                                                <th
-                                                    class="min-w-125px">Duración</th>
-                                                <th
-                                                    class="min-w-125px">Sesión</th>
-                                                <th class="min-w-125px">#
-                                                    Preguntas</th>
-                                            </tr>
-                                            <!--end::Table row-->
-                                        </thead>
-                                        <!--end::Table head-->
-                                        <!--begin::Table body-->
-                                        <tbody class="fw-semibold text-gray-800"
-                                            *ngFor="let punt of puntaje">
-                                            <tr>
-                                                <td>
-                                                    <label class="w-150px">{{
-                                                        punt.materia }}</label>
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="badge badge-light-danger">{{
-                                                        punt.puntaje_total |
-                                                        number:'1.2-2' }} / {{
-                                                        sobre2
-                                                        }}</span>
-                                                </td>
-                                                <td>
-                                                    <label class="w-150px">60
-                                                        (min)</label>
-                                                </td>
-                                                <td>
-                                                    @if(punt.materia
-                                                    =='Ingles'){
-                                                    <label
-                                                        class="w-150px">S2</label>
-                                                    }@else{
-                                                    @if(punt.materia
-                                                    =='Lectura Critica'){
-                                                    <label
-                                                        class="w-150px">S1</label>
-                                                    }@else{
-                                                    <label
-                                                        class="w-150px">Ambas</label>
-                                                    }
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @if(punt.materia
-                                                    =='Ingles'){
-                                                    <label class="w-150px">45 x
-                                                        Sesion</label>
-                                                    }@else{
-                                                    @if(punt.materia
-                                                    =='Lectura Critica'){
-                                                    <label class="w-150px">41 x
-                                                        Sesion</label>
-                                                    }@else{
-                                                    @if(punt.materia
-                                                    =='Matemáticas'){
-                                                    <label class="w-150px">25 x
-                                                        Sesion</label>
-                                                    }@else {
-                                                    @if(punt.materia
-                                                    =='Sociales y Ciudadanas'){
-                                                    <label class="w-150px">25 x
-                                                        Sesion</label>
-
-                                                    }@else {
-                                                    <label class="w-150px">29 x
-                                                        Sesion</label>
-                                                    }
-                                                    }
-                                                    }
-                                                    }
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <!--end::Table body-->
-                                    </table>
-                                    <!--end::Table-->
-                                </div>
-                                <!--end::Product table-->
-                            </div>
-                            <!--end::Section-->
                         </div>
                         <!--end::Card body-->
                     </div>
                     <!--end::Card-->
-
                 </div>
                 <!--end::Content-->
                 <!--begin::Sidebar-->
@@ -372,6 +254,681 @@
     </div>
 
     <div class="row mt-1 justify-content-center">
+        <div class="col-7">
+            <div class="card shadow-sm card-xl-stretch">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Resultados</h2>
+                </div>
+                <div class="card-body">
+                    <!--begin::Section-->
+                    <div class="mb-0">
+                        <!--begin::Product table-->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table
+                                class="table align-middle table-row-dashed fs-6 gy-1 mb-0">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr
+                                        class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-6 text-uppercase gs-0">
+                                        <td class="min-w-125px">Puntaje
+                                            Gobal</td>
+                                        <td
+                                            class="min-w-125px">
+                                            <span
+                                                class="fs-2 badge badge-light-danger">{{
+                                                global |
+                                                number:'1.2-2' }} / {{
+                                                sobre1
+                                                }}</span></td>
+                                        <th class="min-w-125px"></th>
+                                    </tr>
+                                    <!--begin::Table row-->
+                                    <tr
+                                        class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+                                        <th
+                                            class="min-w-100px">Area</th>
+                                        <th
+                                            class="min-w-100px">Puntaje</th>
+                                        <th
+                                            class="min-w-100px">Duración</th>
+                                        <th class="min-w-100px">#
+                                            Preguntas Sesión</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody class="fw-semibold text-gray-800"
+                                    *ngFor="let punt of puntaje">
+                                    <tr>
+                                        <td>
+                                            <label class="w-150px">{{
+                                                punt.materia }}</label>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="badge badge-light-danger">{{
+                                                punt.puntaje_total |
+                                                number:'1.2-2' }} / {{
+                                                sobre2
+                                                }}</span>
+                                        </td>
+                                        <td>
+                                            <label class="w-150px">60
+                                                (min)</label>
+                                        </td>
+                                        <td>
+
+                                            @if(punt.materia
+                                            =='Ingles'){
+                                            45 x
+                                            }@else{
+                                            @if(punt.materia
+                                            =='Lectura Critica'){
+                                            41 x
+                                            }@else{
+                                            @if(punt.materia
+                                            =='Matemáticas'){
+                                            25 x
+                                            }@else {
+                                            @if(punt.materia
+                                            =='Sociales y Ciudadanas'){
+                                            25 x
+
+                                            }@else {
+                                            29 x
+                                            }
+                                            }
+                                            }
+                                            }
+
+                                            @if(punt.materia
+                                            =='Ingles'){
+                                            S2
+                                            }@else{
+                                            @if(punt.materia
+                                            =='Lectura Critica'){
+                                            S1
+                                            }@else{
+                                            Ambas
+                                            }
+                                            }
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <!--end::Table-->
+                        </div>
+                        <!--end::Product table-->
+                    </div>
+                    <!--end::Section-->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-5">
+            <div class="card shadow-sm card-xl-stretch">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Niveles de
+                        Desempeño</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-0">
+                        <div class="table-responsive">
+                            <table
+                                class="table align-middle table-row-dashed fs-8 gy-1 mb-0">
+                                <thead>
+                                    <tr
+                                        class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+                                        <th
+                                            class="min-w-110px text-center">Valoración
+                                            Cualitativa</th>
+                                        <th
+                                            class="min-w-100px text-center">Categoria</th>
+                                        <th
+                                            class="min-w-100px text-center">Mínimo</th>
+                                        <th
+                                            class="min-w-100px text-center">Máximo</th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="fw-semibold text-gray-800 ant-table-tbody">
+                                    <tr>
+                                        <td class="text-center">
+                                            Desempeño Avanzado
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            A
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            437
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            500
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Desempeño Satisfactorio
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            S
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            325
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            436.99
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Desempeño Mínimo
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            M
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            221
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            324.99
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Desempeño Insuficiente
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            I
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            0
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            220.99
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm card-xl-stretch">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Nivel de
+                        Desempeño Global</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-0">
+                        <div class="table-responsive">
+                            <table class="table align-middle gs-1 gy-1 gx-1">
+                                <tbody
+                                    class="ant-table-tbody-desem text-center">
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.obtenerRango(global) == 'Avanzado'"></i></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.obtenerRango(global) == 'Satisfactorio'"></i></td>
+                                        <td class="avanzado text-white">4</td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.obtenerRango(global) == 'Minimo'"></i></td>
+                                        <td
+                                            class="satisfactorio text-white">3</td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.obtenerRango(global) == 'Insuficiente'"></i></td>
+                                        <td class="minimo text-white">2</td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td
+                                            class="insuficiente text-white">1</td>
+                                        <td class="minimo"></td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Puntaje Máximo
+                        y Mínimo</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="graPunMaxMin"
+                                style="width: 100%;height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Promedio
+                        Estudiante Vs Salón</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="graProEstVsSal"
+                                style="width: 100%;height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Promedio
+                        Estudiante Vs Curso</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="grafEstVsCurso"
+                                style="width: 100%;height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-8">
+            <div class="card shadow-sm card-xl-stretch">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Niveles de
+                        Desempeño Por Áreas</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-0">
+                        <div class="table-responsive">
+                            <table
+                                class="table align-middle table-row-dashed fs-8 gy-1 mb-0">
+                                <thead>
+                                    <tr
+                                        class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+                                        <th
+                                            class="min-w-110px text-center">Área</th>
+                                        <th
+                                            colspan="2"
+                                            class="min-w-100px text-center insuficiente text-white"
+                                            style="border-radius: 10px;">Desempeño
+                                            Insuficiente</th>
+                                        <th
+                                            colspan="2"
+                                            class="min-w-100px text-center minimo text-white"
+                                            style="border-radius: 10px;">Desempeño
+                                            Mínimo</th>
+                                        <th
+                                            colspan="2"
+                                            class="min-w-100px text-center satisfactorio text-white"
+                                            style="border-radius: 10px;">Desempeño
+                                            Satisfactorio</th>
+                                        <th
+                                            colspan="2"
+                                            class="min-w-100px text-center avanzado text-white"
+                                            style="border-radius: 10px;">Desempeño
+                                            Avanzado</th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="fw-semibold text-gray-800 ant-table-tbody">
+                                    <tr>
+                                        <td class="text-center">
+
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            Mínimo
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            Máximo
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            Mínimo
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            Máximo
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            Mínimo
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            Máximo
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            Mínimo
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            Máximo
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Matemáticas
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            0
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            35
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            36
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            50
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            51
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            70
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            71
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            100
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Lectura Critica
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            0
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            35
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            36
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            50
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            51
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            65
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            66
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            100
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Sociales y Ciudadanas
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            0
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            40
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            41
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            55
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            56
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            70
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            71
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            100
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            Ciencias Naturales
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            0
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            40
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            41
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            55
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            56
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            70
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            71
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            100
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card shadow-sm card-xl-stretch">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Ingles</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-0">
+                        <div class="table-responsive">
+                            <table
+                                class="table align-middle table-row-dashed fs-8 gy-1 mb-0">
+                                <thead>
+                                    <tr
+                                        class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+                                        <th
+                                            class="min-w-110px text-center">ND</th>
+                                        <th
+                                            class="min-w-100px text-center">Mínimo</th>
+                                        <th
+                                            class="min-w-100px text-center">Máximo</th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="fw-semibold text-gray-800 ant-table-tbody">
+                                    <tr>
+                                        <td class="text-center">
+                                            B1
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            71
+                                        </td>
+                                        <td
+                                            class="avanzado text-white text-center">
+                                            100
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            A2
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            58
+                                        </td>
+                                        <td
+                                            class="satisfactorio text-white text-center">
+                                            70
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            A1
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            37
+                                        </td>
+                                        <td
+                                            class="minimo text-white text-center">
+                                            57
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            A-
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            0
+                                        </td>
+                                        <td
+                                            class="insuficiente text-white text-center">
+                                            36
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
         <div class="col-12">
             <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
                 <div class="card-header bg-primary">
@@ -379,6 +936,7 @@
                         class="fw-bold d-flex align-items-center text-white">Estadisticas
                         del estudiante</h2>
                 </div>
+
             </div>
         </div>
     </div>
@@ -446,7 +1004,8 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compo.porcentaje)
+                                            returnformateado(compo.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
@@ -487,12 +1046,65 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compe.porcentaje)
+                                            returnformateado(compe.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
                                     </tr>
 
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Nivel de desempeño</h2>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle gs-1 gy-1 gx-1">
+                                <tbody
+                                    class="ant-table-tbody-desem text-center">
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[0].puntaje_total, puntaje[0].materia) == 'Avanzado'"></i></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[0].puntaje_total, puntaje[0].materia) == 'Satisfactorio'"></i></td>
+                                        <td class="avanzado text-white">4</td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[0].puntaje_total, puntaje[0].materia) == 'Minimo'"></i></td>
+                                        <td
+                                            class="satisfactorio text-white">3</td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[0].puntaje_total, puntaje[0].materia) == 'Insuficiente'"></i></td>
+                                        <td class="minimo text-white">2</td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td
+                                            class="insuficiente text-white">1</td>
+                                        <td class="minimo"></td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -562,7 +1174,8 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compo.porcentaje)
+                                            returnformateado(compo.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
@@ -604,10 +1217,63 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compe.porcentaje)
+                                            returnformateado(compe.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Nivel de desempeño</h2>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle gs-1 gy-1 gx-1">
+                                <tbody
+                                    class="ant-table-tbody-desem text-center">
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[1].puntaje_total, puntaje[0].materia) == 'Avanzado'"></i></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[1].puntaje_total, puntaje[0].materia) == 'Satisfactorio'"></i></td>
+                                        <td class="avanzado text-white">4</td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[1].puntaje_total, puntaje[0].materia) == 'Minimo'"></i></td>
+                                        <td
+                                            class="satisfactorio text-white">3</td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[1].puntaje_total, puntaje[0].materia) == 'Insuficiente'"></i></td>
+                                        <td class="minimo text-white">2</td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td
+                                            class="insuficiente text-white">1</td>
+                                        <td class="minimo"></td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -680,7 +1346,8 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compo.porcentaje)
+                                            returnformateado(compo.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
@@ -722,12 +1389,65 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compe.porcentaje)
+                                            returnformateado(compe.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
                                     </tr>
 
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Nivel de desempeño</h2>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle gs-1 gy-1 gx-1">
+                                <tbody
+                                    class="ant-table-tbody-desem text-center">
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[2].puntaje_total, puntaje[0].materia) == 'Avanzado'"></i></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[2].puntaje_total, puntaje[0].materia) == 'Satisfactorio'"></i></td>
+                                        <td class="avanzado text-white">4</td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[2].puntaje_total, puntaje[0].materia) == 'Minimo'"></i></td>
+                                        <td
+                                            class="satisfactorio text-white">3</td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[2].puntaje_total, puntaje[0].materia) == 'Insuficiente'"></i></td>
+                                        <td class="minimo text-white">2</td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td
+                                            class="insuficiente text-white">1</td>
+                                        <td class="minimo"></td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -752,7 +1472,7 @@
                         <div
                             class="pregunta d-flex align-items-center justify-content-center flex-grow-1">
                             <span class="text-gray-900 fs-3 fw-bold">
-                                <h1 class="mb-1 ">{{ puntaje[0].materia }}</h1>
+                                <h1 class="mb-1 ">{{ puntaje[3].materia }}</h1>
                             </span>
                         </div>
                         <div class="timer">
@@ -796,7 +1516,8 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compo.porcentaje)
+                                            returnformateado(compo.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
@@ -837,10 +1558,63 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compe.porcentaje)
+                                            returnformateado(compe.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Nivel de desempeño</h2>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle gs-1 gy-1 gx-1">
+                                <tbody
+                                    class="ant-table-tbody-desem text-center">
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[3].puntaje_total, puntaje[0].materia) == 'Avanzado'"></i></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[3].puntaje_total, puntaje[0].materia) == 'Satisfactorio'"></i></td>
+                                        <td class="avanzado text-white">4</td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[3].puntaje_total, puntaje[0].materia) == 'Minimo'"></i></td>
+                                        <td
+                                            class="satisfactorio text-white">3</td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.determinarRango(puntaje[3].puntaje_total, puntaje[0].materia) == 'Insuficiente'"></i></td>
+                                        <td class="minimo text-white">2</td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td
+                                            class="insuficiente text-white">1</td>
+                                        <td class="minimo"></td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -913,7 +1687,8 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compo.porcentaje)
+                                            returnformateado(compo.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
@@ -955,10 +1730,63 @@
                                             style='font-weight: bold;vertical-align: middle;'
                                             class="text-center">
                                             {{
-                                            returnformateado(compe.porcentaje)
+                                            returnformateado(compe.porcentaje) |
+                                            number:'1.2-2'
                                             }}
                                             /100
                                         </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h2 class="mb-1">Nivel de desempeño</h2>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle gs-1 gy-1 gx-1">
+                                <tbody
+                                    class="ant-table-tbody-desem text-center">
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.encontrarRango(puntaje[4].puntaje_total) == 'B1'"></i></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.encontrarRango(puntaje[4].puntaje_total) == 'A2'"></i></td>
+                                        <td class="avanzado text-white">B1</td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td></td>
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.encontrarRango(puntaje[4].puntaje_total) == 'A1'"></i></td>
+                                        <td
+                                            class="satisfactorio text-white">A2</td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td><i
+                                                class="text-dark fa-solid fa-caret-down fs-4"
+                                                *ngIf="_resultadoService.encontrarRango(puntaje[4].puntaje_total) == 'A-'"></i></td>
+                                        <td class="minimo text-white">A1</td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
+                                    </tr>
+                                    <tr class="fw-semibold fs-6 ">
+                                        <td
+                                            class="insuficiente text-white">A-</td>
+                                        <td class="minimo"></td>
+                                        <td class="satisfactorio"></td>
+                                        <td class="avanzado"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -968,6 +1796,7 @@
                 </div>
             </div>
         </div>
+
     </ng-container>
 
 </ng-container>

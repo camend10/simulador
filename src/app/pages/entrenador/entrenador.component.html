@@ -522,14 +522,41 @@
                                                     class="w-100px">{{
                                                     pre.que_desc
                                                     }}</span>
+                                                <div
+                                                    class="d-flex justify-content-center mb-3">
+                                                    <img
+                                                        *ngIf="pre.img_preg"
+                                                        [src]="pre.img_preg| pregunta:pre.id.toString() :materia_id "
+                                                        class="img-fluid mb-2"
+                                                        [style.width]="'300px'">
+                                                </div>
+                                                <span
+                                                    style="text-align: justify;"
+                                                    class="w-100px">{{
+                                                    pre.que_desc2
+                                                    }}</span>
+                                                <span
+                                                    style="text-align: justify;"
+                                                    class="w-100px">{{
+                                                    pre.que_desc3
+                                                    }}</span>
                                             </td>
                                             <td>
                                                 <span
                                                     style="text-align: justify;"
                                                     class="w-100px">{{
-                                                    preguntaSel(respuestaSeleccionada[i],
-                                                    i)
+                                                    preguntaSel(respuestaSeleccionada[i],i)
                                                     }}</span>
+
+                                                <div
+                                                    class="d-flex justify-content-center mb-3"
+                                                    *ngIf="banderaSel(respuestaSeleccionada[i],i) == 1">
+                                                    <img
+                                                        *ngIf="banderaSel(respuestaSeleccionada[i],i) == 1"
+                                                        [src]="imagenSel(respuestaSeleccionada[i],i)| pregunta:idsSel(respuestaSeleccionada[i],i).toString() :materia_id "
+                                                        class="img-fluid mb-2"
+                                                        [style.width]="'400px'">
+                                                </div>
                                             </td>
                                             <td>
                                                 <span
@@ -537,6 +564,16 @@
                                                     class="w-100px">{{
                                                     preguntaCor(pre.true_ans,i)
                                                     }}</span>
+
+                                                <div
+                                                    class="d-flex justify-content-center mb-3"
+                                                    *ngIf="banderaCor(pre.true_ans,i) == 1">
+                                                    <img
+                                                        *ngIf="banderaCor(pre.true_ans,i) == 1"
+                                                        [src]="imagenCor(pre.true_ans,i)| pregunta:idsCor(pre.true_ans,i).toString() :materia_id "
+                                                        class="img-fluid mb-2"
+                                                        [style.width]="'400px'">
+                                                </div>
                                             </td>
                                             <td>
                                                 <span

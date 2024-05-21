@@ -221,7 +221,44 @@ export class EntrenadorComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
 
+  banderaCor(correcta: number, i: number) {
+    let corre: string = 'ans' + correcta;
+    if (corre === 'ans1') {
+      return this.preguntas[i].ban_imgr1;
+    } else {
+      if (corre === 'ans2') {
+        return this.preguntas[i].ban_imgr2;
+      } else {
+        if (corre === 'ans3') {
+          return this.preguntas[i].ban_imgr3;
+        } else {
+          return this.preguntas[i].ban_imgr4;
+        }
+      }
+    }
+  }
+
+  imagenCor(correcta: number, i: number) {
+    let corre: string = 'ans' + correcta;
+    if (corre === 'ans1') {
+      return this.preguntas[i].imgr1;
+    } else {
+      if (corre === 'ans2') {
+        return this.preguntas[i].imgr2;
+      } else {
+        if (corre === 'ans3') {
+          return this.preguntas[i].imgr3;
+        } else {
+          return this.preguntas[i].imgr4;
+        }
+      }
+    }
+  }
+
+  idsCor(correcta: number, i: number) {
+    return this.preguntas[i].id;
   }
 
   preguntaSel(seleccionada: string, i: number) {
@@ -239,6 +276,44 @@ export class EntrenadorComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+
+  banderaSel(seleccionada: string, i: number) {
+    let dividida = seleccionada.split('_');
+    if (dividida[1] === 'ans1') {
+      return this.preguntas[i].ban_imgr1;
+    } else {
+      if (dividida[1] === 'ans2') {
+        return this.preguntas[i].ban_imgr2;
+      } else {
+        if (dividida[1] === 'ans3') {
+          return this.preguntas[i].ban_imgr3;
+        } else {
+          return this.preguntas[i].ban_imgr4;
+        }
+      }
+    }
+  }
+
+  imagenSel(seleccionada: string, i: number) {
+    let dividida = seleccionada.split('_');
+    if (dividida[1] === 'ans1') {
+      return this.preguntas[i].imgr1;
+    } else {
+      if (dividida[1] === 'ans2') {
+        return this.preguntas[i].imgr2;
+      } else {
+        if (dividida[1] === 'ans3') {
+          return this.preguntas[i].imgr3;
+        } else {
+          return this.preguntas[i].imgr4;
+        }
+      }
+    }
+  }
+
+  idsSel(seleccionada: string, i: number) {
+    return this.preguntas[i].id;
   }
 
   condicion(seleccionada: string, correcta: number, i: number) {

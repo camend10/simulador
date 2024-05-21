@@ -1,1 +1,103 @@
-<p>dashboard works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm ">
+            <!--begin::Heading-->
+            <div
+                class="mb-1 pt-5 pb-5 text-center d-flex justify-content-center">
+                <!--begin::Title-->
+                <h1 class="mb-1">Bienvenido Estudiante => <span
+                        class="text-success text-uppercase">{{ usuario.name
+                        }}</span></h1>
+                <!--end::Title-->
+            </div>
+            <!--end::Heading-->
+
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="!bandera">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm ">
+
+                <div
+                    class="mb-1 pt-5 pb-5 text-center d-flex justify-content-center">
+                    <img
+                        class="theme-light-show mx-auto mw-100 w-150px w-lg-500px mb-10 mb-lg-20"
+                        src="assets/media/auth/presaber.png"
+                        alt />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="bandera">
+    <div class="row" *ngIf="cargando">
+        <div class="col-sm-12">
+            <div class="alert alert-dismissible bg-info text-center ">
+                <strong class="text-light">Cargando</strong>
+                <br>
+                <i class="fas fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+                <br>
+                <span class="text-light">Espere por favor</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1 justify-content-center">
+        <div class="col-4">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Preguntas por Materias Sesión 1</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="grafPreMatSes1"
+                                style="width: 100%;height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Preguntas por Materias Sesión 2</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="grafPreMatSes2"
+                                style="width: 100%;height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card shadow-sm card-xl-stretch mb-xl-8 ">
+                <div class="card-header">
+                    <h2
+                        class="fw-bold d-flex align-items-center">Preguntas por Materias Total Prueba</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="grafPreMatSes3"
+                                style="width: 100%;height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</ng-container>

@@ -93,7 +93,7 @@ export class MateriasComponent {
       )
       .subscribe((resp: any) => {
         this.materias = resp.materias;
-        
+        console.log(this.materias);
         this.cargando = false;
         this.inicializarColoresTarjetas();
       })

@@ -54,7 +54,7 @@
             <a [routerLink]="['/resultado',simulacro.id]">
 
                 <img
-                    [src]="simulacro.imagen | imagen:simulacro.id.toString() :'simulacros' "
+                    [src]="simulacro.resultados | imagen:simulacro.id.toString() :'resultados' "
                     class="img-fluid" [alt]="simulacro.nombre">
                 <div
                     class="card-footer d-flex align-items-center justify-content-between"

@@ -20,6 +20,7 @@ import { PagesComponent } from './pages/pages.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/service.index';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { InterceptorService } from './services/service.index';
     FormsModule,
     ServiceModule,
     ToastrModule.forRoot(),
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ],
   providers: [
     {
